@@ -87,8 +87,8 @@ export default function MangaList() {
               </div>
               <div className="list-col-grow">
                 <div>{item.title.romaji}</div>
-                <div className="text-xs uppercase font-semibold opacity-60">
-                  Remaining Reason
+                <div className="text-xs font-semibold opacity-60">
+                  {item.description}
                 </div>
               </div>
               <button className="btn btn-square btn-ghost">

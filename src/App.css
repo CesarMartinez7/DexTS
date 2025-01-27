@@ -2,6 +2,14 @@
 @plugin "daisyui" ; 
 @plugin "daisyui" {
 
-    themes: business --default, retro --prefersdark;
+    themes: light --default, dark --prefersdark;
  
   }
+
+
+
+.gridi{
+  min-height: 100lvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}

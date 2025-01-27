@@ -60,7 +60,7 @@ export default function Manga() {
     const DATA: MangaPeticion = data.Media
     console.log(DATA.id)
     return (
-      <div className="flex">
+      <div className="flex w-full ">
       <div className="flex flex-col justify-center items-center h-screen w-full">
         <h1>Estas leyendo {DATA.title.romaji} </h1>
         <div className="flex justify-between items-center w-[800px]">

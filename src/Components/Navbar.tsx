@@ -1,8 +1,15 @@
+import TypeScript from "../assets/typescript";
+
 export default function Navbar() {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 shadow-sm z-40 sticky top-0 ">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl" href="/">
+          manga{" "}
+          <span className="rotate-12">
+            <TypeScript width={"40px"} height={"30px"} />
+          </span>
+        </a>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
@@ -27,3 +34,36 @@ export default function Navbar() {
     </div>
   );
 }
+
+export const Drawer = () => {
+  return (
+    <div className="drawer lg:drawer-open sticky top-2">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col items-center justify-center">
+        {/* Page content here */}
+        <label
+          htmlFor="my-drawer-2"
+          className="btn btn-primary drawer-button lg:hidden"
+        >
+          Open drawer
+        </label>
+      </div>
+      <div className="drawer-side">
+        <label
+          htmlFor="my-drawer-2"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          {/* Sidebar content here */}
+          <li>
+            <a>Sidebar Item 1</a>
+          </li>
+          <li>
+            <a>Sidebar Item 2</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
