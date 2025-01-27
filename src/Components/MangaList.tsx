@@ -33,7 +33,7 @@ const GET_MANGA = gql`
 `;
 
 export default function MangaList() {
-    const navigate = useNavigate(null)
+    const navigate = useNavigate()
   const searchInput = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState<string>();
   const { loading, error, data } = useQuery(GET_MANGA, {
