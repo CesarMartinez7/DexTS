@@ -2,6 +2,7 @@ import { useQuery, gql } from "@apollo/client";
 import React, { useRef, useState } from "react";
 import { Manga } from "../Types/Peticion";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 const GET_MANGA = gql`
   query GetMedia($page: Int, $perPage: Int, $search: String, $type: MediaType) {
@@ -32,6 +33,7 @@ const GET_MANGA = gql`
 `;
 
 export default function MangaList() {
+    const navigate = useNavigate(null)
   const searchInput = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState<string>();
   const { loading, error, data } = useQuery(GET_MANGA, {
@@ -39,7 +41,7 @@ export default function MangaList() {
       page: 1,
       perPage: 10,
       search: query,
-      type: "MANGA", //
+      type: "MANGA", 
     },
   });
 
@@ -69,9 +71,10 @@ export default function MangaList() {
       </form>
       <ul className="list bg-base-100 rounded-box shadow-md">
         {data.Page.media.map((item: Manga, index : number) => (
-          <a href={`https://vidsrc.icu/embed/manga/${item.id}/1`}>
+          <li onClick={() => {
+            navigate(`/manga/${item.id}`)
+          }}>
             <li className="p-4 pb-2 text-xs opacity-60 tracking-wide"></li>
-
             <li className="list-row">
               <div className="text-4xl font-thin opacity-30 tabular-nums">
                 {index + 1}
@@ -106,7 +109,7 @@ export default function MangaList() {
                 </svg>
               </button>
             </li>
-          </a>
+          </li>
         ))}
       </ul>
     </div>
