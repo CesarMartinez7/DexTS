@@ -33,47 +33,69 @@ const GET_MANGA = gql`
 `;
 
 export default function MangaList() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const searchInput = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState<string>();
+  const [isManga,setIsManga] = useState<boolean>(true)
   const { loading, error, data } = useQuery(GET_MANGA, {
     variables: {
       page: 1,
       perPage: 20,
       search: query,
-      type: "MANGA", 
+      type: isManga ? "MANGA" : "ANIME",
     },
   });
 
-  const handleSubmit = (event : React.FormEvent): void => {
-    event.preventDefault()
-    if(searchInput.current){
-        setQuery(searchInput.current?.value)
+  const handleSubmit = (event: React.FormEvent): void => {
+    event.preventDefault();
+    if (searchInput.current) {
+      setQuery(searchInput.current?.value);
     }
-    
-  }
+  };
 
   if (loading) return <Loading />;
   if (error) return <div>Errror</div>;
   return (
     <div className="p-10">
       <form
+      className="flex justify-between"
         onSubmit={(e) => {
-            handleSubmit(e)
+          handleSubmit(e);
         }}
       >
         <input
-        ref={searchInput}
+          ref={searchInput}
           type="text"
-          placeholder="Type here"
+          placeholder="Dragon ball, Monster, Pluto "
           className="input input-bordered w-full max-w-xs"
         />
+        <div className="filter" id="gene">
+          <input className="btn btn-square" type="reset" value="×" />
+          <input
+            className="btn"
+            type="radio"
+            onClick={() => setIsManga(true)}
+            name="frameworks"
+            aria-label="Manga"
+          />
+          <input
+            className="btn"
+            type="radio"
+            onClick={() => setIsManga(false)}
+            name="frameworks"
+            aria-label="Anime"
+          />
+        </div>
       </form>
       <ul className="list bg-base-100 rounded-box shadow-md overflow-y-auto">
-        {data.Page.media.map((item: Manga, index : number) => (
-          <li className="cursor-pointer" title={`Leer ${item.title.romaji}`} onClick={() => {
-            navigate(`/manga/${item.id}`)
-          }}>
+        {data.Page.media.map((item: Manga, index: number) => (
+          <li
+            className="cursor-pointer"
+            title={`Leer ${item.title.romaji}`}
+            onClick={() => {
+              navigate(`/manga/${item.id}`);
+            }}
+          >
             <li className="p-4 pb-2 text-xs opacity-60 tracking-wide"></li>
             <li className="list-row">
               <div className="text-4xl font-thin opacity-30 tabular-nums">

@@ -58,17 +58,17 @@ export default function Manga() {
     const DATA: MangaPeticion = data.Media;
     console.log(DATA.id);
     return (
-      <div className="flex w-full ">
+      <div className="flex w-full overflow-y-auto">
         <div className="flex flex-col justify-center items-center h-screen w-full">
           <div className="w-full p-16">
-            <h1 className="font-semibold text-4xl">{DATA.title.romaji}</h1>
+            <h3 className="font-semibold text-4xl ">{DATA.title.romaji}</h3>
             <ul className="flex gap-2 flex-wrap">
-              {DATA.tags.map((tag) => (
-                <li className="badge h-fit w-fit badge-ghost">{tag.name}</li>
+              {DATA.genres.map((tag) => (
+                <li className="badge h-fit w-fit badge-ghost">{tag}</li>
               ))}
             </ul>
-            <p>{DATA.description}</p>
-
+            <p className="font-extralight">{DATA.description}</p>
+            <p className="font-">{DATA.type}</p>
           </div>
           <div className="flex justify-between items-center w-[800px]">
             <div>
@@ -82,12 +82,19 @@ export default function Manga() {
               </button>
             </div>
           </div>
-          <iframe
-            width={"800px"}
-            height={"700px"}
-            src={`https://vidsrc.icu/embed/manga/${id}/${episodio}`}
-            frameBorder="0"
-          ></iframe>
+
+          {DATA.type === "ANIME" ? (
+            <div className="w-full h-full p-8">
+              <embed className="w-full h-[600px]"src={`https://vidsrc.cc/v2/embed/anime/ani${id}/${episodio}/sub?autoPlay=false`}  />
+            </div>
+          ) : (
+            <iframe
+              width={"800px"}
+              height={"700px"}
+              src={`https://vidsrc.icu/embed/manga/${id}/${episodio}`}
+              frameBorder="0"
+            ></iframe>
+          )}
         </div>
       </div>
     );
