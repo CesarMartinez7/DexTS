@@ -39,7 +39,7 @@ export default function MangaList() {
   const { loading, error, data } = useQuery(GET_MANGA, {
     variables: {
       page: 1,
-      perPage: 10,
+      perPage: 20,
       search: query,
       type: "MANGA", 
     },
@@ -69,9 +69,9 @@ export default function MangaList() {
           className="input input-bordered w-full max-w-xs"
         />
       </form>
-      <ul className="list bg-base-100 rounded-box shadow-md">
+      <ul className="list bg-base-100 rounded-box shadow-md overflow-y-auto">
         {data.Page.media.map((item: Manga, index : number) => (
-          <li onClick={() => {
+          <li className="cursor-pointer" title={`Leer ${item.title.romaji}`} onClick={() => {
             navigate(`/manga/${item.id}`)
           }}>
             <li className="p-4 pb-2 text-xs opacity-60 tracking-wide"></li>

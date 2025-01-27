@@ -5,10 +5,10 @@ export default function Navbar() {
     <div className="navbar bg-base-100 shadow-sm z-40 sticky top-0 ">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl" href="/">
-          manga{" "}
           <span className="rotate-12">
             <TypeScript width={"40px"} height={"30px"} />
           </span>
+          manga{" "}
         </a>
       </div>
       <div className="flex-none">
