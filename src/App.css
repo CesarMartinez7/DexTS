@@ -121,7 +121,7 @@
 
 .glassMorf {
   backdrop-filter: blur(7.5px);
-  -webkit-backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   
 }
