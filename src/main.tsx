@@ -2,7 +2,7 @@ import * as ReactDOM from 'react-dom/client';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import "./App.css"
 import App from './App';
-import Navbar from './Components/Navbar';
+// import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 
 

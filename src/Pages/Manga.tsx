@@ -1,49 +1,46 @@
 import { useParams } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
-import { useState } from "react";
+import { useQuery} from "@apollo/client";
 import Loading from "../Components/Loading";
 import { MangaPeticion } from "../Types/Manga";
+import { useReducer } from "react";
+import { GET_DATA_MANGA } from "../Request/Request1";
 
-const GET_DATA_MANGA = gql`
-  query ($id: Int, $type: MediaType) {
-    # Define which variables will be used in the query (id)
-    Media(id: $id, type: $type) {
-      # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
-      id
-      title {
-        romaji
-        english
-        native
-      }
-      idMal
-      type
-      format
-      status
-      description
-      startDate {
-        year
-      }
-      episodes
-      chapters
-      coverImage {
-        extraLarge
-        large
-        medium
-        color
-      }
-      volumes
-      genres
-      tags {
-        name
-        description
-      }
-    }
+
+
+enum ConteoDeAcciones  {
+  INCREMENT = "INCREMENT",
+  DECREMENT = "DECREMENT",
+  REASIGNAR = "REASIGNAR"
+
+}
+
+interface CountAction {
+  type: ConteoDeAcciones;
+  payload: number;
+}
+
+interface CountState {
+  count: number;
+}
+
+
+function reducer (state: CountState,action: CountAction) {
+  const {type,payload} = action
+  switch(type){
+    case ConteoDeAcciones.INCREMENT:
+      return {count: state.count + 1}
+    case ConteoDeAcciones.DECREMENT:
+      return {count: state.count - 1}
+    case ConteoDeAcciones.REASIGNAR:
+      return {count: payload}
   }
-`;
+}
+
+
 
 export default function Manga() {
+  const [state,dispatch] = useReducer(reducer,{count: 1})
   const { id } = useParams();
-  const [episodio, setEpisodio] = useState<number>(1);
   const numeriId = id ? parseInt(id) : 0;
   const { loading, error, data } = useQuery(GET_DATA_MANGA, {
     variables: {
@@ -69,20 +66,21 @@ export default function Manga() {
               ))}
             </ul>
             <p className="font-extralight">{DATA.description}</p>
-            <p className="font-">{DATA.type}</p>
+            <p className="font-light">{DATA.type}</p>
             <div className="flex justify-between items-center w-[800px]">
               <div>
                 <button
-                  onClick={() => setEpisodio((e) => e - 1)}
+                  onClick={() => dispatch({type: ConteoDeAcciones.DECREMENT,payload: 0})}
                   className="btn"
                 >
                   Anterior
                 </button>
               </div>
               <div>
+                <p>{state?.count}</p>
                 <button
                   className="btn"
-                  onClick={() => setEpisodio((e) => e + 1)}
+                  onClick={() => dispatch({type: ConteoDeAcciones.INCREMENT,payload: 0})}
                 >
                   Siguiente
                 </button>
@@ -93,21 +91,27 @@ export default function Manga() {
               <div className="w-full h-full p-8">
                 <embed
                   className="w-full h-[600px]"
-                  src={`https://vidsrc.cc/v2/embed/anime/ani${id}/${episodio}/sub?autoPlay=false`}
+                  src={`https://vidsrc.cc/v2/embed/anime/ani${id}/${state?.count}/sub?autoPlay=false`}
                 />
               </div>
             ) : (
               <div className="flex">
                 <iframe
                   className="w-[800px] h-screen"
-                  src={`https://vidsrc.icu/embed/manga/${id}/${episodio}`}
+                  src={`https://vidsrc.icu/embed/manga/${id}/${state?.count}`}
                   frameBorder="0"
                 ></iframe>
                 <div className="p-12">
                   <p className="font-medium mb-2">Episodios - Capitulos</p>
                   <ol className="grid grid-cols-10 gap-2 ">
                     {Array.from({ length: DATA.chapters }, (_, i) => (
-                      <button className="btn btn-dash btn-primary" type="button" onClick={() => setEpisodio(e => i + 1)} >{i + 1}</button>
+                      <button
+                        className="btn btn-dash "
+                        type="button"
+                        onClick={() => dispatch({type: ConteoDeAcciones.REASIGNAR, payload: i + 1})}
+                      >
+                        {i + 1}
+                      </button>
                     ))}
                   </ol>
                 </div>

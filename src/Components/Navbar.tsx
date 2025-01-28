@@ -1,18 +1,26 @@
 import React from "react";
 import TypeScript from "../assets/typescript";
 import { useNavigate } from "react-router-dom";
+import { QueryContext } from "../App";
+import { useContext } from "react";
+import { useRef } from "react";
 
 export default function Navbar() {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const {query,setQuery} = useContext(QueryContext)
   const navigate = useNavigate()
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault()
-    navigate("/search")
+    if(inputRef.current){
+      setQuery(inputRef.current.value)
+      navigate("/search")
+    }
   }
   return (
     <div className="navbar bg-base-100 shadow-sm z-40 sticky top-0 rounded-md">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl" href="/">
-          Manga
+        {query}
           <span className="-rotate-10">
             <TypeScript width={"40px"} height={"30px"} />
           </span>
@@ -41,6 +49,7 @@ export default function Navbar() {
                 </g>
               </svg>
               <input
+                ref={inputRef}
                 type="search"
                 className="grow focus:w-full w-[20%] transition-all duration-200"
                 placeholder="Search"

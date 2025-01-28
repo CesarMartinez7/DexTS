@@ -1,44 +1,21 @@
 import { useQuery, gql } from "@apollo/client";
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import { Manga } from "../Types/Peticion";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
+import { GET_MANGA_LIST } from "../Request/RequestMangaList";
 
 
-const GET_MANGA = gql`
-  query GetMedia($page: Int, $perPage: Int, $search: String, $type: MediaType) {
-    Page(page: $page, perPage: $perPage) {
-      pageInfo {
-        currentPage
-        hasNextPage
-        perPage
-      }
-      media(search: $search, type: $type) {
-        id
-        title {
-          romaji
-          english
-          native
-          userPreferred
-        }
-        chapters
-        genres
-        description
-        coverImage {
-          medium
-        }
-        bannerImage
-      }
-    }
-  }
-`;
 
-export default function MangaList() {
+type Query = {
+  query: string
+}
+
+export default function MangaList({query} : Query) {
+
   const navigate = useNavigate();
-  const searchInput = useRef<HTMLInputElement>(null);
-  const [query, setQuery] = useState<string>();
   const [isManga,setIsManga] = useState<boolean>(true)
-  const { loading, error, data } = useQuery(GET_MANGA, {
+  const { loading, error, data } = useQuery(GET_MANGA_LIST, {
     variables: {
       page: 1,
       perPage: 20,
@@ -47,13 +24,6 @@ export default function MangaList() {
     },
   });
 
-  const handleSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    if (searchInput.current) {
-      setQuery(searchInput.current?.value);
-    }
-    navigate("/search")
-  };
 
   if (loading) return <Loading />;
   if (error) return <div>Errror</div>;
@@ -61,16 +31,8 @@ export default function MangaList() {
     <div className="p-10">
       <form
       className="flex justify-between"
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
       >
-        <input
-          ref={searchInput}
-          type="text"
-          placeholder="Dragon ball, Monster, Pluto "
-          className="input input-bordered w-full max-w-xs"
-        />
+        <div>sdfsdf</div>
         <div className="filter" id="gene">
           <input className="btn btn-square" type="reset" value="×" />
           <input
@@ -107,6 +69,7 @@ export default function MangaList() {
                 <img
                   className="size-10 rounded-box"
                   src={item.coverImage.medium}
+                  alt={`${item.title.userPreferred}`}
                 />
               </div>
               <div className="list-col-grow">
@@ -115,7 +78,7 @@ export default function MangaList() {
                   {item.description}
                 </div>
               </div>
-              <button className="btn btn-square btn-ghost">
+              <button type="button" className="btn btn-square btn-ghost">
                 <svg
                   className="size-[1.2em]"
                   xmlns="http://www.w3.org/2000/svg"
