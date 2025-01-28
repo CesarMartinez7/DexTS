@@ -58,6 +58,7 @@ export default function Manga() {
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
   if (data) {
+    console.log(data)
     const DATA: MangaPeticion = data.Media;
     return (
       <div className="flex w-full  flex-col">

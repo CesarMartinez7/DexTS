@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 @plugin "daisyui" {
-  themes: black --default, nord --prefersdark;
+  themes: nord --default, black --prefersdark;
 }
 
 /* @plugin "daisyui/theme" {
@@ -120,9 +120,8 @@
 }
 
 .glassMorf {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(2.5px);
-  -webkit-backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(5.5px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  
 }

@@ -1,5 +1,5 @@
 
-
+// Estas son las interfaces y tipos utilizados en la Pagina o Route de Manga para la peticion de los datos
 export type Tags = {
     name: string;
     description: string;

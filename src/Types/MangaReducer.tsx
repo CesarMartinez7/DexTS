@@ -1,3 +1,5 @@
+// Estas son las interfaces y tipos utulizados en la La parte del Reducer
+
 export enum ConteoDeAcciones {
   INCREMENT = "INCREMENT",
   DECREMENT = "DECREMENT",

@@ -18,7 +18,7 @@ export default function Navbar() {
     }
   };
   return (
-    <div className="navbar bg-base-100 h-10 glassMorf  shadow-sm z-40 sticky top-0 rounded-md">
+    <div className="navbar  h-10 glassMorf  shadow-sm z-40 sticky top-0 ">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl" href="/">
           manga

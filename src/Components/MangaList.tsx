@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-import { Manga } from "../Types/Peticion";
+import { Media, Welcome} from "../Types/MangaList";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
 import { GET_MANGA_LIST } from "../Request/RequestMangaList";
@@ -10,14 +10,14 @@ type Query = {
   query: string;
 };
 
-const List = ({ data } : any) => {
+const List = ({ data } : Welcome) => {
   const navigate = useNavigate();
   const handleClick = (id : number) : void => {
     navigate(`/manga/${id}`)
   }
   return (
     <ul className="list bg-base-100 rounded-box shadow-md overflow-y-auto">
-      {data.Page.media.map((item: Manga) => (
+      {data.Page.media.map((item: Media) => (
         <li className="list-row" onClick={() => handleClick(item.id) }>
           <div>
             <img className="size-12 rounded-box object-cover" src={item.coverImage.large} />
@@ -71,7 +71,6 @@ export default function MangaList({ query }: Query) {
       </form>
       <main className="my-2.5">
       <List data={data} />
-
       </main>
     </div>
   );
