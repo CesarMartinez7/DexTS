@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Loading from "../Components/Loading";
-import { MangaPeticion} from "../Types/Manga";
+import { MangaPeticion } from "../Types/Manga";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React, { useReducer } from "react";
 import { GET_DATA_MANGA } from "../Request/Request1";
@@ -33,11 +33,11 @@ const ArrayEpisodios = ({ episodios, dispatch }: PropsArrayEpisodios) => {
   );
 };
 
-const Genres = ({ DATA }: any ) => {
+const Genres = ({ DATA }: any) => {
   return (
     <section>
       <ul className="flex gap-2 flex-wrap">
-        {DATA.genres.map((gen : any ) => (
+        {DATA.genres.map((gen: any) => (
           <li className="badge h-fit w-fit badge-ghost">{gen}</li>
         ))}
       </ul>
@@ -61,16 +61,25 @@ export default function Manga() {
     const DATA: MangaPeticion = data.Media;
     return (
       <div className="flex w-full flex-col">
-        <div className="flex flex-col justify-center  items-center w-full">
-          <div className="grid lg:grid-cols-2 gap-3 lg:p-4">
-            <div data-element="Datos" className="flex flex-col gap-1.5 lg:p-12  p-5 ">
+        <div className="flex flex-col h-auto w-full">
+          <div className="grid lg:grid-cols-2 gap-3 lg:p-4 h-screen">
+            <div
+              data-element="Datos"
+              className="flex flex-col items-center justify-center gap-1.5 lg:p-12  p-5 "
+            >
               <h3 className="font-semibold text-4xl ">{DATA.title.romaji}</h3>
               <p className="text-[12px] mt-1.5 mb-1.5">{DATA.title.native}</p>
               <Genres DATA={DATA} />
               <p className="font-extralight">{DATA.description}</p>
+              <p>{DATA.chapters}</p>
+              <p className="font-extralight text-[12px]">{DATA.status}</p>
             </div>
             <div className="flex items-center justify-center">
-              <img src={`${DATA.coverImage.large}`} alt="" />
+              <img
+                src={`${DATA.coverImage.large}`}
+                alt=""
+                className=" rounded-2xl object-cover"
+              />
             </div>
           </div>
           <div className="w-full lg:p-12 overflow-y-auto">
@@ -86,7 +95,7 @@ export default function Manga() {
                 <div className="w-full h-[80vh] ">
                   <iframe
                     title={`Cuadro de ${DATA.title.english} `}
-                    className="w-full h-full rounded-xl "
+                    className="w-full h-[600px] lg:h-screen rounded-xl p-6"
                     src={`https://vidsrc.icu/embed/manga/${id}/${state?.count}`}
                   ></iframe>
                 </div>
@@ -102,7 +111,11 @@ export default function Manga() {
                         }
                         className="btn"
                       >
-                        <Icon icon="pixelarticons:arrow-left" width="20" height="20" />
+                        <Icon
+                          icon="pixelarticons:arrow-left"
+                          width="20"
+                          height="20"
+                        />
                       </button>
                     </div>
                     <div>
@@ -115,7 +128,11 @@ export default function Manga() {
                           })
                         }
                       >
-                        <Icon icon="pixelarticons:arrow-right" width="20" height="20" />
+                        <Icon
+                          icon="pixelarticons:arrow-right"
+                          width="20"
+                          height="20"
+                        />
                       </button>
                     </div>
                   </div>
