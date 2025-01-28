@@ -20,7 +20,7 @@ export default function Navbar() {
     <div className="navbar bg-base-100 shadow-sm z-40 sticky top-0 rounded-md">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl" href="/">
-        {query}
+        manga
           <span className="-rotate-10">
             <TypeScript width={"40px"} height={"30px"} />
           </span>
@@ -30,7 +30,6 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">
           <li>
             <form onSubmit={handleSubmit}>
-
             <label className="input ">
               <svg
                 className="h-[1em] opacity-50"
