@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery} from "@apollo/client";
 import { useState } from "react";
 import { Manga } from "../Types/Peticion";
 import Loading from "./Loading";

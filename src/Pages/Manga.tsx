@@ -1,17 +1,14 @@
 import { useParams } from "react-router-dom";
-import { useQuery} from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Loading from "../Components/Loading";
 import { MangaPeticion } from "../Types/Manga";
-import { useReducer } from "react";
+import React, { useReducer } from "react";
 import { GET_DATA_MANGA } from "../Request/Request1";
 
-
-
-enum ConteoDeAcciones  {
+enum ConteoDeAcciones {
   INCREMENT = "INCREMENT",
   DECREMENT = "DECREMENT",
-  REASIGNAR = "REASIGNAR"
-
+  REASIGNAR = "REASIGNAR",
 }
 
 interface CountAction {
@@ -23,23 +20,47 @@ interface CountState {
   count: number;
 }
 
-
-function reducer (state: CountState,action: CountAction) {
-  const {type,payload} = action
-  switch(type){
+function reducer(state: CountState, action: CountAction) {
+  const { type, payload } = action;
+  switch (type) {
     case ConteoDeAcciones.INCREMENT:
-      return {count: state.count + 1}
+      return { count: state.count + 1 };
     case ConteoDeAcciones.DECREMENT:
-      return {count: state.count - 1}
+      return { count: state.count - 1 };
     case ConteoDeAcciones.REASIGNAR:
-      return {count: payload}
+      return { count: payload };
   }
 }
 
+type PropsArrayEpisodios = {
+  episodios: number
+  dispatch : React.Dispatch<CountAction>
+}
 
+
+const ArrayEpisodios = ({episodios,dispatch} : PropsArrayEpisodios) => {
+  return(
+    <>
+    {Array.from({ length: episodios }, (_, i) => (
+      <button
+        className="btn btn-dash"
+        type="button"
+        onClick={() =>
+          dispatch({
+            type: ConteoDeAcciones.REASIGNAR,
+            payload: i + 1,
+          })
+        }
+      >
+        {i + 1}
+      </button>
+    ))}
+    </>
+  )
+}
 
 export default function Manga() {
-  const [state,dispatch] = useReducer(reducer,{count: 1})
+  const [state, dispatch] = useReducer(reducer, { count: 1 });
   const { id } = useParams();
   const numeriId = id ? parseInt(id) : 0;
   const { loading, error, data } = useQuery(GET_DATA_MANGA, {
@@ -67,25 +88,6 @@ export default function Manga() {
             </ul>
             <p className="font-extralight">{DATA.description}</p>
             <p className="font-light">{DATA.type}</p>
-            <div className="flex justify-between items-center w-[800px]">
-              <div>
-                <button
-                  onClick={() => dispatch({type: ConteoDeAcciones.DECREMENT,payload: 0})}
-                  className="btn"
-                >
-                  Anterior
-                </button>
-              </div>
-              <div>
-                <p>{state?.count}</p>
-                <button
-                  className="btn"
-                  onClick={() => dispatch({type: ConteoDeAcciones.INCREMENT,payload: 0})}
-                >
-                  Siguiente
-                </button>
-              </div>
-            </div>
 
             {DATA.type === "ANIME" ? (
               <div className="w-full h-full p-8">
@@ -95,24 +97,50 @@ export default function Manga() {
                 />
               </div>
             ) : (
-              <div className="flex">
-                <iframe
-                  className="w-[800px] h-screen"
-                  src={`https://vidsrc.icu/embed/manga/${id}/${state?.count}`}
-                  frameBorder="0"
-                ></iframe>
+              <div className="grid grid-cols-2">
+                <div className="w-full">
+                  <iframe
+                    className="w-full h-screen"
+                    src={`https://vidsrc.icu/embed/manga/${id}/${state?.count}`}
+                    frameBorder="0"
+                  ></iframe>
+                </div>
                 <div className="p-12">
+                  <div>
+                    <p className="font-extralight text-[14px]">Capitulo {state.count}</p>
+                    <h3 className="font-medium text-2xl">{DATA.title.english}</h3>
+                  </div>
+                  <div className="flex justify-between items-center w-full">
+                    <div>
+                      <button
+                        onClick={() =>
+                          dispatch({
+                            type: ConteoDeAcciones.DECREMENT,
+                            payload: 0,
+                          })
+                        }
+                        className="btn"
+                      >
+                        Anterior
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        className="btn"
+                        onClick={() =>
+                          dispatch({
+                            type: ConteoDeAcciones.INCREMENT,
+                            payload: 0,
+                          })
+                        }
+                      >
+                        Siguiente
+                      </button>
+                    </div>
+                  </div>
                   <p className="font-medium mb-2">Episodios - Capitulos</p>
                   <ol className="grid grid-cols-10 gap-2 ">
-                    {Array.from({ length: DATA.chapters }, (_, i) => (
-                      <button
-                        className="btn btn-dash "
-                        type="button"
-                        onClick={() => dispatch({type: ConteoDeAcciones.REASIGNAR, payload: i + 1})}
-                      >
-                        {i + 1}
-                      </button>
-                    ))}
+                    <ArrayEpisodios episodios={DATA.chapters} dispatch={dispatch}></ArrayEpisodios>
                   </ol>
                 </div>
               </div>
