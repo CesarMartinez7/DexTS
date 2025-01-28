@@ -3,7 +3,7 @@ import Loading from "./Components/Loading";
 import Manga from "./Pages/Informacion";
 import Home from "./Pages/Home";
 
-import Navbar, { Drawer } from "./Components/Navbar";
+import Navbar from "./Components/Navbar";
 import MangaList from "./Components/MangaList";
 import { useState } from "react";
 
@@ -25,9 +25,6 @@ export default function App() {
   const [query,setQuery] = useState<string>("Dragon ball")
   return (
     <div className="flex">
-      <div className="">
-        <Drawer />
-      </div>
       <div className="w-full">
         <QueryContext.Provider value={{query,setQuery}}>
         <BrowserRouter>
