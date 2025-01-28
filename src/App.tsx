@@ -1,6 +1,6 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Loading from "./Components/Loading";
-import Manga from "./Pages/Manga";
+import Manga from "./Pages/Informacion";
 import Home from "./Pages/Home";
 
 import Navbar, { Drawer } from "./Components/Navbar";
