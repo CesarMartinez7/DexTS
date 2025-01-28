@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
 import { GET_MANGA_LIST } from "../Request/RequestMangaList";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import NotFound from "./NoFound";
 
 type Query = {
   query: string;
@@ -15,12 +16,13 @@ const List = ({ data } : Welcome) => {
   const handleClick = (id : number) : void => {
     navigate(`/manga/${id}`)
   }
+  if(data.Page.media.length === 0) return <NotFound text="No se encontraron resultados"/>
   return (
     <ul className="list bg-base-100 rounded-box shadow-md overflow-y-auto">
       {data.Page.media.map((item: Media) => (
         <li className="list-row" onClick={() => handleClick(item.id) }>
           <div>
-            <img className="size-12 rounded-box object-cover" src={item.coverImage.large} />
+            <img className="size-12 rounded-box object-cover" src={item.coverImage.large}  alt={`Imagen de ${item.title.romaji}`}/>
           </div>
           <div>
             <div>{item.title.romaji}</div>
