@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 root.render(
   <ApolloProvider client={client}>
-    <Navbar/>
+    {/* <Navbar/> */}
     <App></App>
     <Footer/>
   </ApolloProvider>,

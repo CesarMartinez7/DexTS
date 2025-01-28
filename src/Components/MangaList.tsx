@@ -4,6 +4,7 @@ import { Manga } from "../Types/Peticion";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
 
+
 const GET_MANGA = gql`
   query GetMedia($page: Int, $perPage: Int, $search: String, $type: MediaType) {
     Page(page: $page, perPage: $perPage) {
@@ -51,6 +52,7 @@ export default function MangaList() {
     if (searchInput.current) {
       setQuery(searchInput.current?.value);
     }
+    navigate("/search")
   };
 
   if (loading) return <Loading />;

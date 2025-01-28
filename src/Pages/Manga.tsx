@@ -107,7 +107,7 @@ export default function Manga() {
                   <p className="font-medium mb-2">Episodios - Capitulos</p>
                   <ol className="grid grid-cols-10 gap-2 ">
                     {Array.from({ length: DATA.chapters }, (_, i) => (
-                      <button className="btn btn-dash btn-primary">{i + 1}</button>
+                      <button className="btn btn-dash btn-primary" type="button" onClick={() => setEpisodio(e => i + 1)} >{i + 1}</button>
                     ))}
                   </ol>
                 </div>
