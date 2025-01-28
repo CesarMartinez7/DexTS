@@ -22,6 +22,7 @@ export const GET_MANGA_LIST = gql`
         description
         coverImage {
           medium
+          large
         }
         bannerImage
       }

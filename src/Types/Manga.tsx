@@ -1,9 +1,10 @@
 
 
-type Tags = {
+export type Tags = {
     name: string;
     description: string;
 }
+
 
 
 export interface MangaPeticion {

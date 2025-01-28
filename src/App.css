@@ -1,10 +1,8 @@
 @import "tailwindcss";
-@plugin "daisyui" ;
+@plugin "daisyui";
 @plugin "daisyui" {
-
   themes: black --default, nord --prefersdark;
-
-} 
+}
 
 /* @plugin "daisyui/theme" {
   name: "winter";
@@ -78,8 +76,6 @@
   --noise: 1;
 } */
 
-
-  
 /* @plugin "daisyui/theme" {
   name: "winter";
   default: true;
@@ -117,9 +113,16 @@
 
  */
 
-
-.gridi{
+.gridi {
   min-height: 100lvh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.glassMorf {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }

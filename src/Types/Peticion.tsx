@@ -19,6 +19,7 @@ export interface Manga {
     description: string
     coverImage: {
         medium: string
+        large: string
     }
     bannerImage: string
 }
