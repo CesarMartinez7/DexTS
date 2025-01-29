@@ -51,7 +51,7 @@ export default function Manga() {
   const numeriId = id ? parseInt(id) : 0;
   const { loading, error, data } = useQuery(GET_DATA_MANGA, {
     variables: {
-      id: numeriId,
+      id: numeriId, 
     },
   });
 

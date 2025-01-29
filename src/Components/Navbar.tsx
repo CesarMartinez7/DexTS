@@ -21,7 +21,7 @@ export default function Navbar() {
     <div className="navbar  h-10 glassMorf  shadow-sm z-40 sticky top-0 ">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl" href="/">
-          manga
+          dex
           <span className="-rotate-10">
             <TypeScript width={"40px"} height={"30px"} />
           </span>
