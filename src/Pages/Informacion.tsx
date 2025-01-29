@@ -17,7 +17,7 @@ const ArrayEpisodios = ({ episodios, dispatch }: PropsArrayEpisodios) => {
     <>
       {Array.from({ length: episodios }, (_, i) => (
         <button
-          className={`btn btn-soft btn- `}
+          className={`btn btn-active `}
           type="button"
           onClick={() =>
             dispatch({
@@ -51,7 +51,7 @@ export default function Manga() {
   const numeriId = id ? parseInt(id) : 0;
   const { loading, error, data } = useQuery(GET_DATA_MANGA, {
     variables: {
-      id: numeriId, 
+      id: numeriId,
     },
   });
 
@@ -61,8 +61,16 @@ export default function Manga() {
     const DATA: MangaPeticion = data.Media;
     return (
       <div className="flex w-full flex-col">
-        <div className="flex flex-col h-auto w-full">
-          <div className="grid lg:grid-cols-2 gap-3 lg:p-4 h-screen">
+        <div className="flex flex-col h-auto w-full ">
+          <div className=" h-[30vh] relative">
+            <img
+              src={DATA.bannerImage}
+              alt={`Baner de ${DATA.title.english}`}
+              className="w-full relative h-full -z-30 object-cover  "
+            />
+            <div className=" inset-0 absolute bg-gradient-to-t from-base-100  to-transparent"></div>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-3 lg:p-4 md:h-[50vh]">
             <div
               data-element="Datos"
               className="flex flex-col items-center justify-center gap-1.5 lg:p-12  p-5 "
@@ -71,8 +79,31 @@ export default function Manga() {
               <p className="text-[12px] mt-1.5 mb-1.5">{DATA.title.native}</p>
               <Genres DATA={DATA} />
               <p className="font-extralight">{DATA.description}</p>
-              <p>{DATA.chapters}</p>
-              <p className="font-extralight text-[12px]">{DATA.status}</p>
+              {/* name of each tab group should be unique */}
+          <div role="tablist" className="tabs tabs-lift w-full">
+            <input type="radio" name="my_tabs_3" role="tab" className="tab" aria-label="Estado" />
+            <div className="tab-content bg-base-100 border-base-300 p-6">
+            <div className="stats shadow">
+              <div className="stat">
+                <div className="stat-title">Estado</div>
+                <div className="stat-value">{DATA.status}</div>
+                <div className="stat-desc">Año de lanzamiento: <strong>{DATA.startDate.year}</strong></div>
+              </div>
+            </div>
+            </div>
+
+            <input type="radio" name="my_tabs_3" role="tab" className="tab" aria-label="Etiquetas" defaultChecked />
+            <div className="tab-content bg-base-100 border-base-300 p-6">
+              <div className="flex flex-wrap gap-1.5">
+              {DATA.tags.map((tag) => (
+                <kbd className="kbd-xs kbd">{tag.name}</kbd>
+              ))}
+              </div>
+            </div>
+
+            <input type="radio" name="my_tabs_3" role="tab" className="tab" aria-label="Tab 3" />
+            <div className="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+          </div>
             </div>
             <div className="flex items-center justify-center">
               <img
@@ -82,7 +113,7 @@ export default function Manga() {
               />
             </div>
           </div>
-          <div className="w-full lg:p-12 overflow-y-auto">
+          <div className="w-full lg:p-12 overflow-scroll h-auto">
             {DATA.type === "ANIME" ? (
               <div className="w-full h-full p-8">
                 <embed
@@ -99,7 +130,7 @@ export default function Manga() {
                     src={`https://vidsrc.icu/embed/manga/${id}/${state?.count}`}
                   ></iframe>
                 </div>
-                <div className="p-1 lg:p-6 w-full h-full flex gap-4 flex-col">
+                <div className=" lg:p-6 w-full h-full flex gap-4 flex-col p-5.5">
                   <div className="flex justify-between items-center w-full">
                     <div>
                       <button
@@ -116,11 +147,12 @@ export default function Manga() {
                           width="20"
                           height="20"
                         />
+                        Anterior
                       </button>
                     </div>
                     <div>
                       <button
-                        className="btn"
+                        className="btn btn-outline"
                         onClick={() =>
                           dispatch({
                             type: ConteoDeAcciones.INCREMENT,
@@ -128,11 +160,14 @@ export default function Manga() {
                           })
                         }
                       >
+                        Siguiente
                         <Icon
                           icon="pixelarticons:arrow-right"
                           width="20"
                           height="20"
+                          
                         />
+                        
                       </button>
                     </div>
                   </div>
@@ -146,7 +181,7 @@ export default function Manga() {
                   </div>
 
                   <p className="font-medium mb-2">Episodios - Capitulos</p>
-                  <ol className="grid grid-cols-10 gap-2 overflow-auto h-screen">
+                  <ol className="grid grid-cols-10 gap-2 overflow-auto h-screen ">
                     <ArrayEpisodios
                       episodios={DATA.chapters}
                       dispatch={dispatch}

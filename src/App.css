@@ -123,6 +123,6 @@
   -webkit-backdrop-filter: blur(8.5px);
   backdrop-filter: blur(7.5px);
   border-radius: 10px;
-  @apply shadow-sm z-40 sticky top-0 navbar  h-10 bg-transparent 
+  @apply shadow-sm z-40 sticky top-0 navbar h-10 bg-transparent 
   
 }

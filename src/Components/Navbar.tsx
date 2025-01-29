@@ -18,9 +18,9 @@ export default function Navbar() {
     }
   };
   return (
-    <div className="glassMorf  ">
+    <div className="glassMorf ">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl" href="/">
+        <a className="btn btn-ghost text-xl " href="/">
           dex
           <span className="-rotate-10">
             <TypeScript width={"40px"} height={"30px"} />
@@ -36,7 +36,7 @@ export default function Navbar() {
                 <input
                   ref={inputRef}
                   type="search"
-                  className="grow focus:w-full w-[20%] transition-all duration-200"
+                  className="grow focus:w-full w-14 md:w-[20%]  transition-all duration-200"
                   placeholder="Search"
                 />
                 <kbd className="kbd kbd-sm">Ctrl</kbd>

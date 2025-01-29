@@ -8,6 +8,7 @@ export type Tags = {
 
 
 export interface MangaPeticion {
+    bannerImage: string;
     id: number;
     idMal: number;
     title: {

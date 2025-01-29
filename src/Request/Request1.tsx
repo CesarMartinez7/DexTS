@@ -1,4 +1,6 @@
 import { gql } from "@apollo/client";
+
+// Se utiliza en el router o componente de informacion para los datos de los mangas o anime.
 export const GET_DATA_MANGA = gql`
   query ($id: Int, $type: MediaType) {
     # Define which variables will be used in the query (id)
@@ -26,6 +28,7 @@ export const GET_DATA_MANGA = gql`
         medium
         color
       }
+      bannerImage
       volumes
       genres
       tags {
