@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import  { useState } from "react";
+import { useState } from "react";
 import { Media, Welcome } from "../Types/MangaList";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
@@ -11,15 +11,9 @@ type Query = {
   query: string;
 };
 
-
-
-
-
-const List = ({data,currentPage,setCurrentPage} : Welcome) => {
+const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
   const navigate = useNavigate();
-  
 
-  
   const handleClick = (id: number): void => {
     navigate(`/manga/${id}`);
   };
@@ -29,7 +23,11 @@ const List = ({data,currentPage,setCurrentPage} : Welcome) => {
     <div>
       <ul className="list bg-base-100 rounded-box shadow-md overflow-y-auto">
         {data.Page.media.map((item: Media) => (
-          <li className="list-row" onClick={() => handleClick(item.id)} key={item.id}>
+          <li
+            className="list-row"
+            onClick={() => handleClick(item.id)}
+            key={item.id}
+          >
             <div>
               <img
                 className="size-12 rounded-box object-cover"
@@ -47,7 +45,7 @@ const List = ({data,currentPage,setCurrentPage} : Welcome) => {
             </div>
             <p className="list-col-wrap text-xs">{item.description}</p>
             <button className="btn btn-square btn-ghost" title="dsf">
-              <Icon icon="pixelarticons:play" width="20" height="20"  />
+              <Icon icon="pixelarticons:play" width="20" height="20" />
             </button>
             <button className="btn btn-square btn-ghost" title="dsf">
               <Icon icon="pixelarticons:heart" width="20" height="20" />
@@ -58,14 +56,9 @@ const List = ({data,currentPage,setCurrentPage} : Welcome) => {
 
       <div className="flex justify-center">
         <div className="join">
-          <button className="join-item btn">1</button>
-          <button
-            className="join-item btn btn-active"
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            2
-          </button>
-          
+          <button className="join-item btn" onClick={() => setCurrentPage((e) => e - 1 )}>«</button>
+          <button className="join-item btn">Page {currentPage}</button>
+          <button className="join-item btn" onClick={() => setCurrentPage((e) => e + 1 )}>»</button>
         </div>
       </div>
     </div>
@@ -102,7 +95,11 @@ export default function MangaList({ query }: Query) {
         </div>
       </div>
       <main className="my-2.5">
-        <List data={data} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        <List
+          data={data}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </main>
     </div>
   );
