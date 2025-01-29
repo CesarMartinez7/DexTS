@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import MangaList from "../Components/MangaList";
 import { GET_MANGA_LIST } from "../Request/RequestMangaList";
 import { useQuery } from "@apollo/client";
