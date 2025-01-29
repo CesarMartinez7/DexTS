@@ -46,14 +46,9 @@
 5. Abre un Pull Request.
 
 
----
 
-## Contacto 📧
-
-Si tienes alguna pregunta o sugerencia, no dudes en contactarme:
-
-- **Email**: cesarwamartinez@gmail.com
 
 ---
 
-¡Gracias por visitar **Dexts**! Esperamos que disfrutes de tu experiencia viendo anime y leyendo manga. 🎉
+El logo de TypeScript es una marca registrada de Microsoft Corporation.
+
