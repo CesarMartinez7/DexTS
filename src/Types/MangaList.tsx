@@ -5,6 +5,8 @@
 
 export interface Welcome {
     data: Data;
+    currentPage: number
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
 export interface Data {

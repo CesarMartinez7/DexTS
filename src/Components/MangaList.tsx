@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Media, Welcome } from "../Types/MangaList";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
@@ -13,18 +13,12 @@ type Query = {
 
 
 
-interface ListProps {
-  data: Welcome
-  currentPage: number
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
-}
 
 
-
-const List = ({data: {data},currentPage,setCurrentPage} : ListProps) => {
+const List = ({data,currentPage,setCurrentPage} : Welcome) => {
   const navigate = useNavigate();
   
-  console.log("dsfsd")
+
   
   const handleClick = (id: number): void => {
     navigate(`/manga/${id}`);
