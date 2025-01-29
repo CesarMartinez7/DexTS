@@ -31,7 +31,7 @@
 
 
 ![Imagen en MAC](/src/assets/capt_dexts_mac.png)
-(Agrega aquí algunas capturas de pantalla de tu aplicación si las tienes.)
+
 
 ---
 
