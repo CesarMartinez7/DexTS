@@ -1,6 +1,8 @@
 import { gql } from "@apollo/client";
 
 
+// Manga list request
+
 export const GET_MANGA_LIST = gql`
   query GetMedia($page: Int, $perPage: Int, $search: String, $type: MediaType) {
     Page(page: $page, perPage: $perPage) {

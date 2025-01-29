@@ -53,6 +53,7 @@ export default function Home() {
         </div>
 
         <MangaList query={"Goku"} />
+        
       </div>
     );
   }
