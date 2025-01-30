@@ -113,6 +113,10 @@
 
  */
 
+* {
+  scroll-behavior: smooth
+}
+
 .gridi {
   min-height: 100lvh;
   display: grid;
@@ -125,4 +129,28 @@
   border-radius: 10px;
   @apply shadow-sm z-40 sticky top-0 navbar h-10 bg-transparent 
   
+}
+
+
+
+
+/* Works on Firefox */
+* {
+  scrollbar-width: 20px;
+  scrollbar-color: rgb(0, 0, 0) rgba(255, 255, 255, 0.2);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: orange;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(213, 213, 213, 0.222);
+  border-radius: 20px;
+  border: 3px solid rgb(0, 0, 0);
 }

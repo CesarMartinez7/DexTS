@@ -105,15 +105,16 @@ export default function Manga() {
             <div className="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
           </div>
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center ">
               <img
                 src={`${DATA.coverImage.large}`}
                 alt=""
-                className=" rounded-2xl object-cover"
+                title="sdfsdf"
+                className=" rounded-2xl object-cover w-fit h-fit"
               />
             </div>
           </div>
-          <div className="w-full lg:p-12 overflow-scroll h-auto">
+          <div className="w-full lg:p-12  h-auto">
             {DATA.type === "ANIME" ? (
               <div className="w-full h-full p-8">
                 <embed
@@ -122,15 +123,15 @@ export default function Manga() {
                 />
               </div>
             ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-2 h-screen gap-12">
-                <div className="w-full h-[80vh] ">
+              <div className="grid grid-cols-1 lg:grid-cols-2 md:h-screen gap-12">
+                <div className="w-full md:h-[80vh] ">
                   <iframe
                     title={`Cuadro de ${DATA.title.english} `}
                     className="w-full h-[600px] lg:h-screen rounded-xl p-6"
                     src={`https://vidsrc.icu/embed/manga/${id}/${state?.count}`}
                   ></iframe>
                 </div>
-                <div className=" lg:p-6 w-full h-full flex gap-4 flex-col p-5.5">
+                <div className=" lg:p-6 w-full lg:h-screen flex gap-4 flex-col p-5.5">
                   <div className="flex justify-between items-center w-full">
                     <div>
                       <button
@@ -171,7 +172,7 @@ export default function Manga() {
                       </button>
                     </div>
                   </div>
-                  <div>
+                  <div className="w-full">
                     <p className="font-extralight text-[14px]">
                       Capitulo {state.count}
                     </p>
@@ -180,8 +181,8 @@ export default function Manga() {
                     </h3>
                   </div>
 
-                  <p className="font-medium mb-2">Episodios - Capitulos</p>
-                  <ol className="grid grid-cols-10 gap-2 overflow-auto h-screen ">
+                  <p className="font-medium mb-2 overflow-hidden">Episodios - Capitulos</p>
+                  <ol className="grid grid-cols-10 gap-2 h-full overflow-y-scroll scroll-smooth  ">
                     <ArrayEpisodios
                       episodios={DATA.chapters}
                       dispatch={dispatch}
