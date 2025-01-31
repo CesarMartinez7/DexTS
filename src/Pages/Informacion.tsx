@@ -219,7 +219,7 @@ export default function Manga() {
                   <p className="font-medium mb-2 overflow-hidden">
                     Episodios - Capitulos
                   </p>
-                  <ol className="grid grid-cols-10 gap-2 h-full overflow-y-scroll scroll-smooth  ">
+                  <ol className="grid grid-cols-10 g gap-2 h-full overflow-y-scroll scroll-smooth grid-flow-row auto-rows-max  ">
                     <ArrayEpisodios
                       episodios={DATA.chapters}
                       dispatch={dispatch}

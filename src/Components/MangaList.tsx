@@ -21,7 +21,7 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
     return <NotFound text="No se encontraron resultados" />;
   return (
     <div>
-      <ul className="list bg-base-100 rounded-box shadow-md overflow-y-auto">
+      <ul className="list bg-base-100  overflow-y-auto">
         {data.Page.media.map((item: Media) => (
           <li
             className="list-row"
@@ -30,20 +30,20 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
           >
             <div>
               <img
-                className="size-12 rounded-box object-cover"
+                className="size-14 rounded-md object-cover"
                 src={item.coverImage.large}
                 alt={`Imagen de ${item.title.romaji}`}
               />
             </div>
             <div>
               <div>{item.title.romaji}</div>
-              <ul className=" gap-1.5  flex flex-wrap  font-semibold opacity-60">
+              <ul className=" gap-2  flex flex-wrap font-medium">
                 {item.genres.map((gen) => (
-                  <li className="badge text-[10px]">{gen}</li>
+                  <li className=" text-[10px] badge badge-ghost">{gen}</li>
                 ))}
               </ul>
             </div>
-            <p className="list-col-wrap text-xs">{item.description}</p>
+            <p className="list-col-wrap textarea-xs opacity-75">{item.description}</p>
             <button className="btn btn-square btn-ghost" title="dsf">
               <Icon icon="pixelarticons:play" width="20" height="20" />
             </button>
@@ -54,7 +54,7 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
         ))}
       </ul>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-11">
         <div className="join">
           <button className="join-item btn" onClick={() => setCurrentPage((e) => e - 1 )}>«</button>
           <button className="join-item btn">Page {currentPage}</button>
