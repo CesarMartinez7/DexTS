@@ -208,14 +208,10 @@ export default function Manga() {
                     </div>
                   </div>
                   <div className="w-full">
-                    <p className="font-extralight text-[14px]">
+                    <p className="font- text-[16px]">
                       Capitulo {state.count}
                     </p>
-                    <h3 className="font-medium text-2xl">
-                      {DATA.title.english}
-                    </h3>
                   </div>
-
                   <p className="font-medium mb-2 overflow-hidden">
                     Episodios - Capitulos
                   </p>
