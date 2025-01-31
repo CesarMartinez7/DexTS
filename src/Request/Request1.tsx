@@ -33,6 +33,10 @@ export const GET_DATA_MANGA = gql`
       bannerImage
       volumes
       genres
+      isAdult
+      meanScore
+      averageScore
+      duration
       tags {
         name
         description

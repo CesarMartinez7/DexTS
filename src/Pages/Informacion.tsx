@@ -65,7 +65,7 @@ export default function Manga() {
           <div className=" h-[30vh] relative">
             <img
               src={DATA.bannerImage}
-              alt={`Baner de ${DATA.title.english}`}
+              alt={`Baner de ${DATA.title.romaji}`}
               className="w-full relative h-full -z-30 object-cover  "
             />
             <div className=" inset-0 absolute bg-gradient-to-t from-base-100  to-transparent"></div>
@@ -73,37 +73,74 @@ export default function Manga() {
           <div className="grid lg:grid-cols-2 gap-3 lg:p-4 md:h-[50vh]">
             <div
               data-element="Datos"
-              className="flex flex-col items-center justify-center gap-1.5 lg:p-12  p-5 "
+              className="flex flex-col  gap-1.5 lg:p-12  p-5 "
             >
-              <h3 className="font-semibold text-4xl ">{DATA.title.romaji}</h3>
-              <p className="text-[12px] mt-1.5 mb-1.5">{DATA.title.native}</p>
+              <h3 className=" text-4xl font-medium ">{DATA.title.romaji}</h3>
+              <div className="text-[11px] opacity-70 font-extralight mt-1.5 mb-1.5 gap-2 flex flex-re">
+                <p>Year: {DATA.startDate.year}</p>
+                <p>Romanji: {DATA.title.native}</p>
+                <p>Score: {DATA.meanScore}</p>
+                <p>Tp: {DATA.format}</p>
+                <p>
+                {DATA.isAdult ? "+18" : "+14"}
+                </p>
+              </div>
               <Genres DATA={DATA} />
-              <p className="font-extralight">{DATA.description}</p>
-              {/* name of each tab group should be unique */}
-          <div role="tablist" className="tabs tabs-lift w-full">
-            <input type="radio" name="my_tabs_3" role="tab" className="tab" aria-label="Estado" />
-            <div className="tab-content bg-base-100 border-base-300 p-6">
-            <div className="stats shadow">
-              <div className="stat">
-                <div className="stat-title">Estado</div>
-                <div className="stat-value">{DATA.status}</div>
-                <div className="stat-desc">Año de lanzamiento: <strong>{DATA.startDate.year}</strong></div>
-              </div>
-            </div>
-            </div>
+              <p className="font-extralight text-sm">{DATA.description}</p>
+              <div role="tablist" className="tabs tabs-lift w-full">
+                <input
+                  type="radio"
+                  name="my_tabs_3"
+                  role="tab"
+                  className="tab"
+                  aria-label="Estado"
+                />
+                <div className="tab-content bg-base-100 border-base-300 p-6">
+                  <div className="stats shadow">
+                    <div className="stat">
+                      <div className="stat-title">Estado</div>
+                      <div className="stat-value">{DATA.status}</div>
+                      <div className="stat-desc">
+                        Año de lanzamiento:{" "}
+                        <strong>{DATA.startDate.year}</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-            <input type="radio" name="my_tabs_3" role="tab" className="tab" aria-label="Etiquetas" defaultChecked />
-            <div className="tab-content bg-base-100 border-base-300 p-6">
-              <div className="flex flex-wrap gap-1.5">
-              {DATA.tags.map((tag) => (
-                <kbd className="kbd-xs kbd">{tag.name}</kbd>
-              ))}
-              </div>
-            </div>
+                <input
+                  type="radio"
+                  name="my_tabs_3"
+                  role="tab"
+                  className="tab"
+                  aria-label="Etiquetas"
+                  defaultChecked
+                />
+                <div className="tab-content bg-base-100 border-base-300 p-6">
+                  <div className="flex flex-wrap gap-1.5">
+                    {DATA.tags.map((tag) => (
+                      <kbd className="kbd-xs kbd">{tag.name}</kbd>
+                    ))}
+                  </div>
+                </div>
 
-            <input type="radio" name="my_tabs_3" role="tab" className="tab" aria-label="Tab 3" />
-            <div className="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
-          </div>
+                <input
+                  type="radio"
+                  name="my_tabs_3"
+                  role="tab"
+                  className="tab"
+                  aria-label="Critica"
+                />
+                <div className="tab-content bg-base-100 border-base-300 p-6">
+                  <div className="stat">
+                    <div className="stat-title">Critica</div>
+                    <div className="stat-value">{DATA.averageScore}</div>
+                    <div className="stat-desc">
+                      Episodios: <strong>{DATA.chapters}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="flex items-center justify-center ">
               <img
@@ -166,9 +203,7 @@ export default function Manga() {
                           icon="pixelarticons:arrow-right"
                           width="20"
                           height="20"
-                          
                         />
-                        
                       </button>
                     </div>
                   </div>
@@ -181,7 +216,9 @@ export default function Manga() {
                     </h3>
                   </div>
 
-                  <p className="font-medium mb-2 overflow-hidden">Episodios - Capitulos</p>
+                  <p className="font-medium mb-2 overflow-hidden">
+                    Episodios - Capitulos
+                  </p>
                   <ol className="grid grid-cols-10 gap-2 h-full overflow-y-scroll scroll-smooth  ">
                     <ArrayEpisodios
                       episodios={DATA.chapters}

@@ -16,11 +16,11 @@ export default function Home() {
     }
   };
 
-  // Efecto para mover el carrusel automáticamente
+
   useEffect(() => {
-    const interval = setInterval(nextSlide, 3000); // Cambia cada 3 segundos
-    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
-  }, [data]); // Dependencia para reiniciar el intervalo si cambian los datos
+    const interval = setInterval(nextSlide, 3000); 
+    return () => clearInterval(interval); 
+  }, [data]); 
 
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
@@ -29,7 +29,6 @@ export default function Home() {
 
     return (
       <div className="w-full">
-        {/* Carrusel de imágenes */}
         <div className="h-[32vh] w-full flex flex-row flex-grow-0 overflow-hidden relative">
           <div
             className="flex transition-transform duration-500 ease-in-out"
@@ -52,7 +51,7 @@ export default function Home() {
           </div>
         </div>
 
-        <MangaList query={"Goku"} />
+        <MangaList query={"Evangelion"} />
         
       </div>
     );

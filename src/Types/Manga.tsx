@@ -25,6 +25,10 @@ export interface MangaPeticion {
     }
     episodios: unknown;
     chapters: number;
+    isAdult: boolean;
+    meanScore: number;
+    averageScore: number;
+    duration: number
     coverImage: {
         extraLarge: string;
         large: string;
