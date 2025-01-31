@@ -37,6 +37,7 @@ export interface Media {
         userPreferred: string
     }
     chapters: number
+    isAdult: boolean
     genres: string[]
     description: string
     coverImage: {

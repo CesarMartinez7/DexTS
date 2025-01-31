@@ -43,7 +43,7 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
                 ))}
               </ul>
             </div>
-            <p className="list-col-wrap textarea-xs opacity-75">{item.description}</p>
+            <p className="list-col-wrap textarea-xs opacity-75" dangerouslySetInnerHTML={{__html: item.description}}></p>
             <button className="btn btn-square btn-ghost" title="dsf">
               <Icon icon="pixelarticons:play" width="20" height="20" />
             </button>

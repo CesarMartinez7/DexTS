@@ -38,13 +38,14 @@ export default function Home() {
               <div key={index} className="w-full h-full flex-shrink-0 relative">
                 <img
                   src={item.bannerImage}
-                  alt=""
+                  alt={`Imagen de ${item.title.english}`}
                   className="w-full h-full object-cover relative"
                 />
                 <div className="absolute flex-col bg-gradient-to-t flex items-end md:p-12 p-6 from-base-100 via-transparent to-base-100 inset-0">
                   <h3 className="text-xl font-medium">{item.title.english}</h3>
                   <h2>{item.title.native}</h2>
                   <p>{item.chapters}</p>
+                  <p className="text-xs">{item.isAdult ? "+18" : "+14"}</p>
                 </div>
               </div>
             ))}

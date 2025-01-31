@@ -21,6 +21,7 @@ export const GET_MANGA_LIST = gql`
         }
         chapters
         genres
+        isAdult
         description
         coverImage {
           medium
