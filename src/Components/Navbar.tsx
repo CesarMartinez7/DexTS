@@ -31,16 +31,16 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">
           <li>
             <form onSubmit={handleSubmit}>
-              <label className="input ">
+              <label className="input bg-transparent  ">
                 <Icon icon="pixelarticons:search" width="20" height="20" />
                 <input
                   ref={inputRef}
                   type="search"
-                  className="grow focus:w-full w-14 md:w-[20%]  transition-all duration-200"
+                  className="grow placeholder placeholder-zinc-600 focus:w-full w-14 md:w-[20%]  transition-all duration-200"
                   placeholder="Search"
                 />
-                <kbd className="kbd kbd-sm">Ctrl</kbd>
-                <kbd className="kbd kbd-sm">K</kbd>
+                <kbd className="kbd kbd-sm bg-transparent">Ctrl</kbd>
+                <kbd className="kbd kbd-sm bg-transparent">K</kbd>
               </label>
             </form>
           </li>

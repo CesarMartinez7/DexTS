@@ -3,9 +3,10 @@ import { useQuery } from "@apollo/client";
 import Loading from "../Components/Loading";
 import { MangaPeticion } from "../Types/Manga";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { GET_DATA_MANGA } from "../Request/Request1";
 import { reducer, CountAction, ConteoDeAcciones } from "../Types/MangaReducer";
+import { useRef } from "react";
 
 type PropsArrayEpisodios = {
   episodios: number;
@@ -46,6 +47,7 @@ const Genres = ({ DATA }: any) => {
 };
 
 export default function Manga() {
+  const refEmbed = useRef<HTMLDivElement>(null)
   const [state, dispatch] = useReducer(reducer, { count: 1 });
   const { id } = useParams();
   const numeriId = id ? parseInt(id) : 0;
@@ -54,6 +56,10 @@ export default function Manga() {
       id: numeriId,
     },
   });
+
+  useEffect(() => {
+    refEmbed.current?.scrollIntoView({"behavior":"smooth"})
+  })
 
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
@@ -86,7 +92,7 @@ export default function Manga() {
                 </p>
               </div>
               <Genres DATA={DATA} />
-              <p className="font-extralight text-sm">{DATA.description}</p>
+              <p className="font-extralight text-sm" dangerouslySetInnerHTML={{__html: DATA.description}}></p>
               <div role="tablist" className="tabs tabs-lift w-full">
                 <input
                   type="radio"
@@ -154,10 +160,53 @@ export default function Manga() {
           <div className="w-full lg:p-12  h-auto">
             {DATA.type === "ANIME" ? (
               <div className="w-full h-full p-8">
+                <div className="flex justify-between items-center w-full">
+                    <div className="mt-5 mb-5">
+                      <button
+                        onClick={() =>
+                          dispatch({
+                            type: ConteoDeAcciones.DECREMENT,
+                            payload: 0,
+                          })
+                        }
+                        className="btn"
+                      >
+                        <Icon
+                          icon="pixelarticons:arrow-left"
+                          width="20"
+                          height="20"
+                        />
+                        Episodio Anterior
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        className="btn btn-outline"
+                        onClick={() => {
+                          refEmbed.current?.scrollIntoView({"behavior": "smooth"})
+                          dispatch({
+                            type: ConteoDeAcciones.INCREMENT,
+                            payload: 0,
+                          }) 
+                        }
+                        }
+                      >
+                        Siguiente Episodio
+                        <Icon
+                          icon="pixelarticons:arrow-right"
+                          width="20"
+                          height="20"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div ref={refEmbed}>
+
                 <embed
-                  className="w-full h-[600px]"
+                  className="w-full h-[700px]"
                   src={`https://vidsrc.cc/v2/embed/anime/ani${id}/${state?.count}/sub?autoPlay=false`}
                 />
+                  </div>
               </div>
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-2 md:h-screen gap-12">
