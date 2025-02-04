@@ -82,15 +82,12 @@ export default function MangaList({ query }: Query) {
   return (
     <div className="p-2 lg:p-10 ">
       <div className="flex justify-end">
-        <p className="mx-44 mb-2 font-light text-[13px]">Filtros</p>
+        <p className="mx-10 mb-2 font-light text-[13px]">Filtros</p>
       </div>
       <div className="flex justify-end">
         <div className="flex gap-2" id="gene">
           <button className="btn" onClick={() => setIsManga(!isManga)}>
-            Manga <Icon icon="pixelarticons:notes" width="20" height="20" />
-          </button>
-          <button className="btn btn-dash" onClick={() => setIsManga(!isManga)}>
-            Anime <Icon icon="pixelarticons:user" width="20" height="20" />
+            {isManga ? "Anime" : "Manga"}
           </button>
         </div>
       </div>

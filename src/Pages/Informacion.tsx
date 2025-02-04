@@ -76,7 +76,7 @@ export default function Manga() {
             />
             <div className=" inset-0 absolute bg-gradient-to-t from-base-100  to-transparent"></div>
           </div>
-          <div className="grid lg:grid-cols-2 gap-3 lg:p-4 md:h-[50vh]">
+          <div className="grid lg:grid-cols-2 gap-3 lg:p-10 ">
             <div
               data-element="Datos"
               className="flex flex-col  gap-1.5 lg:p-12  p-5 "
@@ -152,8 +152,7 @@ export default function Manga() {
               <img
                 src={`${DATA.coverImage.large}`}
                 alt=""
-                title="sdfsdf"
-                className=" rounded-2xl object-cover w-fit h-fit"
+                className="rounded-2xl object-cover w-fit h-fit"
               />
             </div>
           </div>

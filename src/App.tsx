@@ -1,11 +1,13 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Loading from "./Components/Loading";
 import Manga from "./Pages/Informacion";
-import Home from "./Pages/Home";
-
 import Navbar from "./Components/Navbar";
 import MangaList from "./Components/MangaList";
 import { useState } from "react";
+import RUTAS from "./Pages/Lazy"
+
+const {Informacion,Home,Favoritos} = RUTAS
+
 
 import {createContext } from "react";
 
@@ -33,7 +35,8 @@ export default function App() {
             <Route path="/search" element={<MangaList query={query}></MangaList>}></Route>
             <Route path="/" element={<Home/>}></Route>
             <Route path="/loading" element={<Loading />}></Route>
-            <Route path="/manga/:id" element={<Manga />}></Route>
+            <Route path="/manga/:id" element={<Informacion />}></Route>
+            <Route path="/favorites" element={<Favoritos/>}></Route>
           </Routes>
         </BrowserRouter>
         </QueryContext.Provider>

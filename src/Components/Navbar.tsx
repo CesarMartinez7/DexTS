@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { QueryContext } from "../App";
 import { useContext } from "react";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
 export default function Navbar() {
@@ -28,10 +29,11 @@ export default function Navbar() {
         </a>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <form onSubmit={handleSubmit}>
-              <label className="input bg-transparent  ">
+        <ul className="menu menu-horizontal px-1 ">
+          
+          <li className="h-full">
+            <form onSubmit={handleSubmit} className="h-full">
+              <label className="input bg-transparent h-8">
                 <Icon icon="pixelarticons:search" width="20" height="20" />
                 <input
                   ref={inputRef}
@@ -44,31 +46,51 @@ export default function Navbar() {
               </label>
             </form>
           </li>
-          <li><button>
-          <label className="swap swap-rotate">
-  {/* this hidden checkbox controls the state */}
-  <input type="checkbox" className="theme-controller" value="synthwave" />
+          <li>
+          <Link to={"/favorites"} className="btn btn-ghost btn-circle">
+            <Icon icon="pixelarticons:heart" width="22" height="22" />
+          </Link>
+          </li>
+          <li>
+            <button>
+              <label className="swap swap-rotate">
+                {/* this hidden checkbox controls the state */}
+                <input
+                  type="checkbox"
+                  className="theme-controller"
+                  value="synthwave"
+                />
 
-  {/* sun icon */}
-  <svg
-    className="swap-off h-7 w-7 fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24">
-    <path
-      d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
-  </svg>
+                {/* sun icon */}
 
-  {/* moon icon */}
-  <svg
-    className="swap-on h-7 w-7 fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24">
-    <path
-      d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
-  </svg>
-</label>
-          </button>
-          
+                <svg
+                  className="swap-off h-7 w-7 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M13 0h-2v4h2zM0 11v2h4v-2zm24 0v2h-4v-2zM13 24h-2v-4h2zM8 6h8v2H8zM6 8h2v8H6zm2 10v-2h8v2zm10-2h-2V8h2zm2-14h2v2h-2zm0 2v2h-2V4zm2 18h-2v-2h2zm-2-2h-2v-2h2zM4 2H2v2h2v2h2V4H4zM2 22h2v-2h2v-2H4v2H2z"
+                  />
+                </svg>
+
+                {/* moon icon */}
+                <svg
+                  className="swap-on h-7 w-7 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M6 2h8v2h-2v2h-2V4H6zM4 6V4h2v2zm0 10H2V6h2zm2 2H4v-2h2zm2 2H6v-2h2zm10 0v2H8v-2zm2-2v2h-2v-2zm-2-4h2v4h2v-8h-2v2h-2zm-6 0v2h6v-2zm-2-2h2v2h-2zm0 0V6H8v6z"
+                  />
+                </svg>
+              </label>
+            </button>
           </li>
         </ul>
       </div>
