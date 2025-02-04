@@ -92,6 +92,19 @@ export default function Manga() {
                 </p>
               </div>
               <Genres DATA={DATA} />
+              <button className="btn" onClick={() => {
+                window.alert("sdf")
+                const oldData = JSON.parse(localStorage.getItem("favorites") || "[]")
+                const ObjectData = {
+                  name: DATA.title.english,
+                  id: DATA.id,
+                  image: DATA.bannerImage,
+                  type: DATA.type,
+                  episodios: DATA.episodios
+                }
+                const newArrayData = [...oldData,ObjectData]
+                localStorage.setItem("favorites", JSON.stringify(newArrayData))
+              }}>Añadir a favoritos</button>
               <p className="font-extralight text-sm" dangerouslySetInnerHTML={{__html: DATA.description}}></p>
               <div role="tablist" className="tabs tabs-lift w-full">
                 <input

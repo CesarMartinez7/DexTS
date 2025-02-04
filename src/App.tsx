@@ -1,6 +1,5 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Loading from "./Components/Loading";
-import Manga from "./Pages/Informacion";
 import Navbar from "./Components/Navbar";
 import MangaList from "./Components/MangaList";
 import { useState } from "react";
