@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react"
+import NotFound from "../Components/NoFound";
+import { Link} from "react-router-dom";
+import imageNoFound from "../../public/imagent.svg"
 
 interface Peticion {
-    name: string;
+    nameEnglish?: string | null ;
+    nameRomanji?: string;
     id: number;
-    image: string;
+    image: string | null;
     type: string;
     episodios: number
+    descripcion: string
 }
 
 
@@ -14,36 +19,37 @@ export default function Favorites(){
     const [data,setData] = useState<Peticion[]>([])
 
     useEffect(() => {
-        const local: string | null = localStorage.getItem("favorites") 
+        const local = localStorage.getItem("favorites") 
         if(local){   
             const localStorageData  = JSON.parse(local)
             setData(localStorageData)
         }else{
             console.log("error")
         }
-    },[])
+    },[data])
 
-    if (data.length === 0) return <div><h1>No hay registros</h1></div>
+    if (data.length === 0) return <NotFound text="No hay registros"/>
     return (
-        <div className="h-screen">
-            <ul className="grid grid-cols-2 xl:grid-cols-8 p-12 gap-2.5">
+        <div className="w-full p-12 flex flex-col gap-2.5">
+            <button className="btn" onClick={() => {
+                localStorage.setItem("favorites","[]")
+            }}>Vaciar favoritos</button>
+            <div className="grid grid-cols-3 gap-3.5">
                 {data.map((item) => (
-                    <div className="card bg-base-100 image-full  shadow-sm">
+                    <Link className="card bg-base-100 image-full  shadow-sm flex-shink" to={`/manga/${item.id}`}>
                     <figure>
                       <img
-                        src={item.image}
-                        alt="Shoes" />
+                        src={item.image === null ?imageNoFound : item.image  }
+                        alt={item.nameRomanji} />
                     </figure>
                     <div className="card-body">
-                      <h2 className="card-title">Card Title</h2>
-                      <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                      <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
-                      </div>
+                      <h2 className="card-title">{item.nameEnglish} {item.nameRomanji}</h2>
+                      <p>{item.id}</p>
+                      <p>{item.descripcion}</p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
-            </ul>
+            </div>
         </div>
     )
 }

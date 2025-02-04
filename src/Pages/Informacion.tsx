@@ -93,14 +93,15 @@ export default function Manga() {
               </div>
               <Genres DATA={DATA} />
               <button className="btn" onClick={() => {
-                window.alert("sdf")
                 const oldData = JSON.parse(localStorage.getItem("favorites") || "[]")
                 const ObjectData = {
-                  name: DATA.title.english,
+                  nameEnglish: DATA.title.english,
+                  nameRomaji: DATA.title.romaji,
                   id: DATA.id,
                   image: DATA.bannerImage,
                   type: DATA.type,
-                  episodios: DATA.episodios
+                  episodios: DATA.episodios,
+                  descripcion: DATA.description
                 }
                 const newArrayData = [...oldData,ObjectData]
                 localStorage.setItem("favorites", JSON.stringify(newArrayData))
