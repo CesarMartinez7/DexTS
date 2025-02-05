@@ -7,6 +7,7 @@ import React, { useEffect, useReducer } from "react";
 import { GET_DATA_MANGA } from "../Request/Request1";
 import { reducer, CountAction, ConteoDeAcciones } from "../Types/MangaReducer";
 import { useRef } from "react";
+import imageNotFound from "../../public/imagent.svg"
 
 type PropsArrayEpisodios = {
   episodios: number;
@@ -70,7 +71,7 @@ export default function Manga() {
         <div className="flex flex-col h-auto w-full ">
           <div className=" h-[30vh] relative">
             <img
-              src={DATA.bannerImage}
+              src={DATA.bannerImage === null || "" ? imageNotFound : DATA.bannerImage}
               alt={`Baner de ${DATA.title.romaji}`}
               className="w-full relative h-full -z-30 object-cover  "
             />

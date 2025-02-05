@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Media, Welcome } from "../Types/MangaList";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
@@ -68,6 +68,18 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
 export default function MangaList({ query }: Query) {
   const [isManga, setIsManga] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    const storedIsManga = localStorage.getItem("isManga");
+    if (storedIsManga !== null) {
+      setIsManga(storedIsManga === "true");
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isManga", String(isManga));
+  }, [isManga]);
+
   const { loading, error, data } = useQuery(GET_MANGA_LIST, {
     variables: {
       page: currentPage,
@@ -77,10 +89,14 @@ export default function MangaList({ query }: Query) {
     },
   });
 
-  
+  const isFirstPage = currentPage === 1;
+  const isLastPage = data?.Page.pageInfo.hasNextPage === false;
+
+  if (loading) return <Loading />;
   if (error) return <NotFound text="Ocurrio un error " />;
+
   return (
-    <div className="p-2 lg:p-10 ">
+    <div className="p-2 lg:p-10">
       <div className="flex justify-end">
         <p className="mx-10 mb-2 font-light text-[13px]">Filtros</p>
       </div>
@@ -98,6 +114,25 @@ export default function MangaList({ query }: Query) {
           setCurrentPage={setCurrentPage}
         />
       </main>
+      <div className="flex justify-center mt-11">
+        <div className="join">
+          <button
+            className="join-item btn"
+            onClick={() => !isFirstPage && setCurrentPage(currentPage - 1)}
+            disabled={isFirstPage}
+          >
+            «
+          </button>
+          <button className="join-item btn">Page {currentPage}</button>
+          <button
+            className="join-item btn"
+            onClick={() => !isLastPage && setCurrentPage(currentPage + 1)}
+            disabled={isLastPage}
+          >
+            »
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
