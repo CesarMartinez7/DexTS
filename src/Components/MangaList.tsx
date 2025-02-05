@@ -77,7 +77,7 @@ export default function MangaList({ query }: Query) {
     },
   });
 
-  if (loading) return <Loading />;
+  
   if (error) return <NotFound text="Ocurrio un error " />;
   return (
     <div className="p-2 lg:p-10 ">
