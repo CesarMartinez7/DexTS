@@ -7,7 +7,7 @@ import React, { useEffect, useReducer } from "react";
 import { GET_DATA_MANGA } from "../Request/Request1";
 import { reducer, CountAction, ConteoDeAcciones } from "../Types/MangaReducer";
 import { useRef } from "react";
-import imageNotFound from "../../public/imagent.svg"
+import imageNotFound from "../../public/imagent.svg";
 
 type PropsArrayEpisodios = {
   episodios: number;
@@ -48,7 +48,7 @@ const Genres = ({ DATA }: any) => {
 };
 
 export default function Manga() {
-  const refEmbed = useRef<HTMLDivElement>(null)
+  const refEmbed = useRef<HTMLDivElement>(null);
   const [state, dispatch] = useReducer(reducer, { count: 1 });
   const { id } = useParams();
   const numeriId = id ? parseInt(id) : 0;
@@ -59,8 +59,23 @@ export default function Manga() {
   });
 
   useEffect(() => {
-    refEmbed.current?.scrollIntoView({"behavior":"smooth"})
-  })
+    refEmbed.current?.scrollIntoView({ behavior: "smooth" });
+  });
+
+  const handleClickAdd = (DATA: MangaPeticion) => {
+    const oldData = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const ObjectData = {
+      nameEnglish: DATA.title.english,
+      nameRomaji: DATA.title.romaji,
+      id: DATA.id,
+      image: DATA.bannerImage,
+      type: DATA.type,
+      episodios: DATA.episodios,
+      descripcion: DATA.description,
+    };
+    const newArrayData = [...oldData, ObjectData];
+    localStorage.setItem("favorites", JSON.stringify(newArrayData));
+  };
 
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
@@ -71,7 +86,11 @@ export default function Manga() {
         <div className="flex flex-col h-auto w-full ">
           <div className=" h-[30vh] relative">
             <img
-              src={DATA.bannerImage === null || "" ? imageNotFound : DATA.bannerImage}
+              src={
+                DATA.bannerImage === null || ""
+                  ? imageNotFound
+                  : DATA.bannerImage
+              }
               alt={`Baner de ${DATA.title.romaji}`}
               className="w-full relative h-full -z-30 object-cover  "
             />
@@ -88,26 +107,22 @@ export default function Manga() {
                 <p>Romanji: {DATA.title.native}</p>
                 <p>Score: {DATA.meanScore}</p>
                 <p>Tp: {DATA.format}</p>
-                <p>
-                {DATA.isAdult ? "+18" : "+14"}
-                </p>
+                <p>{DATA.isAdult ? "+18" : "+14"}</p>
               </div>
               <Genres DATA={DATA} />
-              <button className="btn" onClick={() => {
-                const oldData = JSON.parse(localStorage.getItem("favorites") || "[]")
-                const ObjectData = {
-                  nameEnglish: DATA.title.english,
-                  nameRomaji: DATA.title.romaji,
-                  id: DATA.id,
-                  image: DATA.bannerImage,
-                  type: DATA.type,
-                  episodios: DATA.episodios,
-                  descripcion: DATA.description
-                }
-                const newArrayData = [...oldData,ObjectData]
-                localStorage.setItem("favorites", JSON.stringify(newArrayData))
-              }}>Añadir a favoritos</button>
-              <p className="font-extralight text-sm" dangerouslySetInnerHTML={{__html: DATA.description}}></p>
+              <div className="flex gap-2.5">
+                <button className="btn btn-accent">
+                  <Icon icon="pixelarticons:edit" width="24" height="24" /> Leer
+                </button>
+                <button className="btn" onClick={() => handleClickAdd(DATA)}>
+                  <Icon icon="pixelarticons:heart" width="24" height="24" />
+                  Añadir a favoritos
+                </button>
+              </div>
+              <p
+                className="font-extralight text-sm"
+                dangerouslySetInnerHTML={{ __html: DATA.description }}
+              ></p>
               <div role="tablist" className="tabs tabs-lift w-full">
                 <input
                   type="radio"
@@ -175,52 +190,52 @@ export default function Manga() {
             {DATA.type === "ANIME" ? (
               <div className="w-full h-full p-8">
                 <div className="flex justify-between items-center w-full">
-                    <div className="mt-5 mb-5">
-                      <button
-                        onClick={() =>
-                          dispatch({
-                            type: ConteoDeAcciones.DECREMENT,
-                            payload: 0,
-                          })
-                        }
-                        className="btn"
-                      >
-                        <Icon
-                          icon="pixelarticons:arrow-left"
-                          width="20"
-                          height="20"
-                        />
-                        Episodio Anterior
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        className="btn btn-outline"
-                        onClick={() => {
-                          refEmbed.current?.scrollIntoView({"behavior": "smooth"})
-                          dispatch({
-                            type: ConteoDeAcciones.INCREMENT,
-                            payload: 0,
-                          }) 
-                        }
-                        }
-                      >
-                        Siguiente Episodio
-                        <Icon
-                          icon="pixelarticons:arrow-right"
-                          width="20"
-                          height="20"
-                        />
-                      </button>
-                    </div>
+                  <div className="mt-5 mb-5">
+                    <button
+                      onClick={() =>
+                        dispatch({
+                          type: ConteoDeAcciones.DECREMENT,
+                          payload: 0,
+                        })
+                      }
+                      className="btn"
+                    >
+                      <Icon
+                        icon="pixelarticons:arrow-left"
+                        width="20"
+                        height="20"
+                      />
+                      Episodio Anterior
+                    </button>
                   </div>
-                  <div ref={refEmbed}>
-
-                <embed
-                  className="w-full h-[700px]"
-                  src={`https://vidsrc.cc/v2/embed/anime/ani${id}/${state?.count}/sub?autoPlay=false`}
-                />
+                  <div>
+                    <button
+                      className="btn btn-outline"
+                      onClick={() => {
+                        refEmbed.current?.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                        dispatch({
+                          type: ConteoDeAcciones.INCREMENT,
+                          payload: 0,
+                        });
+                      }}
+                    >
+                      Siguiente Episodio
+                      <Icon
+                        icon="pixelarticons:arrow-right"
+                        width="20"
+                        height="20"
+                      />
+                    </button>
                   </div>
+                </div>
+                <div ref={refEmbed}>
+                  <embed
+                    className="w-full h-[700px]"
+                    src={`https://vidsrc.cc/v2/embed/anime/ani${id}/${state?.count}/sub?autoPlay=false`}
+                  />
+                </div>
               </div>
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-2 md:h-screen gap-12">
@@ -271,9 +286,7 @@ export default function Manga() {
                     </div>
                   </div>
                   <div className="w-full">
-                    <p className="font- text-[16px]">
-                      Capitulo {state.count}
-                    </p>
+                    <p className="font- text-[16px]">Capitulo {state.count}</p>
                   </div>
                   <p className="font-medium mb-2 overflow-hidden">
                     Episodios - Capitulos
