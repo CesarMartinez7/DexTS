@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import NotFound from "../Components/NoFound";
 import { Link} from "react-router-dom";
 import imageNoFound from "../../public/imagent.svg"
+import { Icon } from "@iconify/react/dist/iconify.js";
+
 
 interface Peticion {
     nameEnglish?: string | null ;
@@ -26,14 +28,17 @@ export default function Favorites(){
         }else{
             console.log("error")
         }
-    },[localStorage.getItem("favorites")])
+    },[data])
 
     if (data.length === 0) return <NotFound text="No hay registros"/>
     return (
         <div className="w-full p-12 flex flex-col gap-2.5">
+            <div>
+
             <button className="btn" onClick={() => {
                 localStorage.setItem("favorites","[]")
-            }}>Vaciar favoritos</button>
+            }}><Icon icon="pixelarticons:trash" width="24" height="24" /> Vaciar favoritos</button>
+            </div>
             <div className="grid grid-cols-2 gap-3.5 md:grid-cols-4">
                 {data.map((item) => (
                     <a className="card image-full shadow-sm z-20 " href={`manga/${item.id} `} key={item.id}>
