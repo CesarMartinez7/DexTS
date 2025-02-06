@@ -8,17 +8,19 @@ import { GET_DATA_MANGA } from "../Request/Request1";
 import { reducer, CountAction, ConteoDeAcciones } from "../Types/MangaReducer";
 import { useRef } from "react";
 import imageNotFound from "../../public/imagent.svg";
-
 type PropsArrayEpisodios = {
   episodios: number;
   dispatch: React.Dispatch<CountAction>;
 };
+
+
 
 const ArrayEpisodios = ({ episodios, dispatch }: PropsArrayEpisodios) => {
   return (
     <>
       {Array.from({ length: episodios }, (_, i) => (
         <button
+        key={crypto.randomUUID()}
           className={`btn btn-active `}
           type="button"
           onClick={() =>
@@ -178,7 +180,7 @@ export default function Manga() {
                 <div className="tab-content bg-base-100 border-base-300 p-6">
                   <div className="flex flex-wrap gap-1.5">
                     {DATA.tags.map((tag) => (
-                      <kbd className="kbd-xs kbd">{tag.name}</kbd>
+                      <kbd className="kbd-xs kbd" key={crypto.randomUUID()}>{tag.name}</kbd>
                     ))}
                   </div>
                 </div>

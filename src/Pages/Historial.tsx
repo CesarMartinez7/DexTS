@@ -26,7 +26,7 @@ export default function Favorites(){
         }else{
             console.log("error")
         }
-    },[data])
+    },[localStorage.getItem("favorites")])
 
     if (data.length === 0) return <NotFound text="No hay registros"/>
     return (
@@ -36,7 +36,7 @@ export default function Favorites(){
             }}>Vaciar favoritos</button>
             <div className="grid grid-cols-2 gap-3.5 md:grid-cols-4">
                 {data.map((item) => (
-                    <Link className="card image-full shadow-sm " to={`/manga/${item.id}`}>
+                    <a className="card image-full shadow-sm z-20 " href={`manga/${item.id} `} key={item.id}>
                     <figure>
                       <img
                         src={item.image === null ?imageNoFound : item.image  }
@@ -46,7 +46,7 @@ export default function Favorites(){
                       <h2 className="card-title font-medium">{item.nameEnglish} {item.nameRomanji}</h2>
                       <p className="font-light">{item.descripcion}</p>
                     </div>
-                  </Link>
+                  </a>
                 ))}
             </div>
         </div>

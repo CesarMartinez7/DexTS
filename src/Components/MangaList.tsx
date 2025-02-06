@@ -38,8 +38,8 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
             <div>
               <div>{item.title.romaji}</div>
               <ul className=" gap-2  flex flex-wrap font-medium">
-                {item.genres.map((gen) => (
-                  <li className=" text-[10px] badge badge-ghost">{gen}</li>
+                {item.genres.map((gen,index) => (
+                  <li className=" text-[10px] badge badge-ghost" key={`${item.id}${index}`}>{gen}</li>
                 ))}
               </ul>
             </div>
