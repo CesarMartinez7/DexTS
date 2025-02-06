@@ -18,15 +18,15 @@ interface Peticion {
 export default function Favorites(){
     const [data,setData] = useState<Peticion[]>([])
 
-    useEffect(() => {
-        const local = localStorage.getItem("favorites") 
-        if(local){   
-            const localStorageData  = JSON.parse(local)
-            setData(localStorageData)
-        }else{
-            console.log("error")
-        }
-    },[data])
+    // useEffect(() => {
+    //     const local = localStorage.getItem("favorites") 
+    //     if(local){   
+    //         const localStorageData  = JSON.parse(local)
+    //         setData(localStorageData)
+    //     }else{
+    //         console.log("error")
+    //     }
+    // },[data])
 
     if (data.length === 0) return <NotFound text="No hay registros"/>
     return (
@@ -34,18 +34,17 @@ export default function Favorites(){
             <button className="btn" onClick={() => {
                 localStorage.setItem("favorites","[]")
             }}>Vaciar favoritos</button>
-            <div className="grid grid-cols-3 gap-3.5">
+            <div className="grid grid-cols-2 gap-3.5 md:grid-cols-4">
                 {data.map((item) => (
-                    <Link className="card bg-base-100 image-full  shadow-sm flex-shink" to={`/manga/${item.id}`}>
+                    <Link className="card image-full shadow-sm " to={`/manga/${item.id}`}>
                     <figure>
                       <img
                         src={item.image === null ?imageNoFound : item.image  }
                         alt={item.nameRomanji} />
                     </figure>
                     <div className="card-body">
-                      <h2 className="card-title">{item.nameEnglish} {item.nameRomanji}</h2>
-                      <p>{item.id}</p>
-                      <p>{item.descripcion}</p>
+                      <h2 className="card-title font-medium">{item.nameEnglish} {item.nameRomanji}</h2>
+                      <p className="font-light">{item.descripcion}</p>
                     </div>
                   </Link>
                 ))}

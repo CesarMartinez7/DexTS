@@ -47,6 +47,18 @@ const ArrayEpisodios = ({ episodios, dispatch }: PropsArrayEpisodios) => {
 //   );
 // };
 
+type NewData = {
+  nameEnglish: string
+  nameRomaji: string
+  id: number
+  image: string
+  type: string
+  episodios: unknown
+  descripcion: string
+}
+
+
+
 export default function Manga() {
   const refEmbed = useRef<HTMLDivElement>(null);
   const [state, dispatch] = useReducer(reducer, { count: 1 });
@@ -58,13 +70,11 @@ export default function Manga() {
     },
   });
 
-  useEffect(() => {
-    refEmbed.current?.scrollIntoView({ behavior: "smooth" });
-  });
+
 
   const handleClickAdd = (DATA: MangaPeticion) => {
-    const oldData = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const ObjectData = {
+    const oldData : [] = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const ObjectData : NewData = {
       nameEnglish: DATA.title.english,
       nameRomaji: DATA.title.romaji,
       id: DATA.id,
@@ -73,8 +83,16 @@ export default function Manga() {
       episodios: DATA.episodios,
       descripcion: DATA.description,
     };
-    const newArrayData = [...oldData, ObjectData];
-    localStorage.setItem("favorites", JSON.stringify(newArrayData));
+    
+    const existe = oldData.find((producto: NewData) => producto.id  === ObjectData.id) 
+    if(existe)
+      console.log("Ya  existe esta mierda")
+    else{
+      const newArrayData = [...oldData, ObjectData];
+      localStorage.setItem("favorites", JSON.stringify(newArrayData));
+    }
+    
+ 
   };
 
   if (loading) return <Loading />;
