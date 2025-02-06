@@ -109,14 +109,19 @@ export default function Manga() {
                 <p>Tp: {DATA.format}</p>
                 <p>{DATA.isAdult ? "+18" : "+14"}</p>
               </div>
-              <Genres DATA={DATA} />
+            
               <div className="flex gap-2.5">
-                <button className="btn btn-accent">
-                  <Icon icon="pixelarticons:edit" width="24" height="24" /> Leer
-                </button>
                 <button className="btn" onClick={() => handleClickAdd(DATA)}>
-                  <Icon icon="pixelarticons:heart" width="24" height="24" />
+                  <Icon icon="pixelarticons:heart" width="18" height="18" />
                   Añadir a favoritos
+                </button>
+                <button className="btn btn-sm" onClick={() => {
+                  console.log(refEmbed)
+                  if(refEmbed.current){
+                    refEmbed.current.scrollIntoView({behavior: "smooth"})
+                  }
+                }}>
+                  <Icon icon="pixelarticons:edit" width="20" height="20" /> Leer
                 </button>
               </div>
               <p
@@ -239,7 +244,7 @@ export default function Manga() {
               </div>
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-2 md:h-screen gap-12">
-                <div className="w-full md:h-[80vh] ">
+                <div className="w-full md:h-[80vh] " ref={refEmbed}>
                   <iframe
                     title={`Cuadro de ${DATA.title.english} `}
                     className="w-full h-[600px] lg:h-screen rounded-xl p-6"
