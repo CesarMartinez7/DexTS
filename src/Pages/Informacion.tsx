@@ -35,17 +35,17 @@ const ArrayEpisodios = ({ episodios, dispatch }: PropsArrayEpisodios) => {
   );
 };
 
-const Genres = ({ DATA }: any) => {
-  return (
-    <section>
-      <ul className="flex gap-2 flex-wrap">
-        {DATA.genres.map((gen: any) => (
-          <li className="badge h-fit w-fit badge-ghost">{gen}</li>
-        ))}
-      </ul>
-    </section>
-  );
-};
+// const Genres = ({ DATA }: any) => {
+//   return (
+//     <section>
+//       <ul className="flex gap-2 flex-wrap">
+//         {DATA.genres.map((gen: any) => (
+//           <li className="badge h-fit w-fit badge-ghost">{gen}</li>
+//         ))}
+//       </ul>
+//     </section>
+//   );
+// };
 
 export default function Manga() {
   const refEmbed = useRef<HTMLDivElement>(null);
