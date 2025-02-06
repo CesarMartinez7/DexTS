@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import Loading from "../Components/Loading";
 import { MangaPeticion } from "../Types/Manga";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useEffect, useReducer } from "react";
+import React, { useReducer } from "react";
 import { GET_DATA_MANGA } from "../Request/Request1";
 import { reducer, CountAction, ConteoDeAcciones } from "../Types/MangaReducer";
 import { useRef } from "react";

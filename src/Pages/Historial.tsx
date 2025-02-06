@@ -18,15 +18,15 @@ interface Peticion {
 export default function Favorites(){
     const [data,setData] = useState<Peticion[]>([])
 
-    // useEffect(() => {
-    //     const local = localStorage.getItem("favorites") 
-    //     if(local){   
-    //         const localStorageData  = JSON.parse(local)
-    //         setData(localStorageData)
-    //     }else{
-    //         console.log("error")
-    //     }
-    // },[data])
+    useEffect(() => {
+        const local = localStorage.getItem("favorites") 
+        if(local){   
+            const localStorageData  = JSON.parse(local)
+            setData(localStorageData)
+        }else{
+            console.log("error")
+        }
+    },[data])
 
     if (data.length === 0) return <NotFound text="No hay registros"/>
     return (
