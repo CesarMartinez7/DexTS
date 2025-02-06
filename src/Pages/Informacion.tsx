@@ -137,7 +137,7 @@ export default function Manga() {
                   aria-label="Estado"
                 />
                 <div className="tab-content bg-base-100 border-base-300 p-6">
-                  <div className="stats shadow">
+                  <div className="stats">
                     <div className="stat">
                       <div className="stat-title">Estado</div>
                       <div className="stat-value">{DATA.status}</div>
