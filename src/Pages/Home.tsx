@@ -4,6 +4,7 @@ import { GET_MANGA_LIST } from "../Request/RequestMangaList";
 import { useQuery } from "@apollo/client";
 import { Data } from "../Types/MangaList";
 import Loading from "../Components/Loading";
+import ImageNoFound from  "../../public/imagent.svg"
 
 export default function Home() {
   const { data, error, loading } = useQuery(GET_MANGA_LIST);
@@ -37,14 +38,15 @@ export default function Home() {
             {DATA.Page.media.map((item, index) => (
               <div key={index} className="w-full h-full flex-shrink-0 relative">
                 <img
-                  src={item.bannerImage}
+                  src={item.bannerImage === null ? ImageNoFound : item.bannerImage}
                   alt={`Imagen de ${item.title.english}`}
                   className="w-full h-full object-cover relative"
                 />
                 <div className="absolute flex-col bg-gradient-to-t flex items-end md:p-12 p-6 from-base-100 via-transparent to-base-100 inset-0">
-                  <h3 className="text-xl font-medium">{item.title.english}</h3>
-                  <h2>{item.title.native}</h2>
+                  <h3 className="text-2xl font-medium">{item.title.english}</h3>
+                  <h2 className="font-extralight">{item.title.native}</h2>
                   <p>{item.chapters}</p>
+                  
                   <p className="text-xs">{item.isAdult ? "+18" : "+14"}</p>
                 </div>
               </div>
