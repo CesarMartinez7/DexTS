@@ -131,17 +131,16 @@ export default function Manga() {
               </div>
             
               <div className="flex gap-2.5">
-                <button className="btn" onClick={() => handleClickAdd(DATA)}>
-                  <Icon icon="pixelarticons:heart" width="18" height="18" />
-                  Añadir a favoritos
-                </button>
-                <button className="btn btn-sm" onClick={() => {
-                  console.log(refEmbed)
+                <button className="btn btn-wide " onClick={() => {
                   if(refEmbed.current){
                     refEmbed.current.scrollIntoView({behavior: "smooth"})
                   }
                 }}>
                   <Icon icon="pixelarticons:edit" width="20" height="20" /> Leer
+                </button>
+                <button className="btn btn-sm" onClick={() => handleClickAdd(DATA)}>
+                  <Icon icon="pixelarticons:heart" width="18" height="18" />
+                  Añadir a favoritos
                 </button>
               </div>
               <p

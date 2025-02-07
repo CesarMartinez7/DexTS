@@ -89,8 +89,8 @@ export default function MangaList({ query }: Query) {
     },
   });
 
-  const isFirstPage = currentPage === 1;
-  const isLastPage = data?.Page.pageInfo.hasNextPage === false;
+  // const isFirstPage = currentPage === 1;
+  // const isLastPage = data?.Page.pageInfo.hasNextPage === false;
 
   if (loading) return <Loading />;
   if (error) return <NotFound text="Ocurrio un error " />;
@@ -115,7 +115,7 @@ export default function MangaList({ query }: Query) {
         />
       </main>
       <div className="flex justify-center mt-11">
-        <div className="join">
+        {/* <div className="join">
           <button
             className="join-item btn"
             onClick={() => !isFirstPage && setCurrentPage(currentPage - 1)}
@@ -131,7 +131,7 @@ export default function MangaList({ query }: Query) {
           >
             »
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
