@@ -9,6 +9,20 @@ export interface Welcome {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
+
+const enum Format {
+    TV,
+    TV_SHORT,
+    MOVIE,
+    SPECIAL,
+    OVA,
+    MANGA,
+    ONA,
+    MUSIC,
+    NOVEL,
+    ONE_SHOT
+}
+
 export interface Data {
     Page: Page
 }
@@ -36,8 +50,17 @@ export interface Media {
         native: string
         userPreferred: string
     }
+    episodes: number
     chapters: number
     isAdult: boolean
+    favourites: number
+    popularity: number
+    MeanScore: number;
+    endDate : {
+        year: string
+    }
+    duration: number
+    format: Format
     genres: string[]
     description: string
     coverImage: {

@@ -213,7 +213,7 @@ export default function Manga() {
           </div>
           <div className="w-full lg:p-12  h-auto">
             {DATA.type === "ANIME" ? (
-              <div className="w-full h-full p-8">
+              <div className="w-full h-full p-0 md:p-7">
                 <div className="flex justify-between items-center w-full">
                   <div className="mt-5 mb-5">
                     <button

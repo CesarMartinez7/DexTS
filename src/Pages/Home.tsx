@@ -4,7 +4,8 @@ import { GET_MANGA_LIST } from "../Request/RequestMangaList";
 import { useQuery } from "@apollo/client";
 import { Data } from "../Types/MangaList";
 import Loading from "../Components/Loading";
-import ImageNoFound from  "../../public/imagent.svg"
+import ImageNoFound from "../../public/imagent.svg";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Home() {
   const { data, error, loading } = useQuery(GET_MANGA_LIST);
@@ -17,11 +18,10 @@ export default function Home() {
     }
   };
 
-
   useEffect(() => {
-    const interval = setInterval(nextSlide, 3000); 
-    return () => clearInterval(interval); 
-  }, [data]); 
+    const interval = setInterval(nextSlide, 3000);
+    return () => clearInterval(interval);
+  }, [data]);
 
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
@@ -38,16 +38,41 @@ export default function Home() {
             {DATA.Page.media.map((item, index) => (
               <div key={index} className="w-full h-full flex-shrink-0 relative">
                 <img
-                  src={item.bannerImage === null ? ImageNoFound : item.bannerImage}
+                  src={
+                    item.bannerImage === null ? ImageNoFound : item.bannerImage
+                  }
                   alt={`Imagen de ${item.title.english}`}
                   className="w-full h-full object-cover relative"
                 />
-                <div className="absolute flex-col bg-gradient-to-t flex items-end md:p-12 p-6 from-base-100 via-transparent to-base-100 inset-0">
+                <div className="absolute flex-col bg-gradient-to-t flex items-start md:p-12 p-6 from-base-100 via-transparent to-base-100 inset-0">
+                  <h2 className="font-extralight text-xs">
+                    {item.title.native}
+                  </h2>
                   <h3 className="text-2xl font-medium">{item.title.english}</h3>
-                  <h2 className="font-extralight">{item.title.native}</h2>
-                  <p>{item.chapters}</p>
-                  
-                  <p className="text-xs">{item.isAdult ? "+18" : "+14"}</p>
+                  <div className="flex flex-row gap-2.5 text-xs font-light mt-0.5">
+                    <p className="text-xs">{item.isAdult ? "+18" : "+14"}</p>
+                    <p>{item.format}</p>
+                    <p>Episodios: {item.episodes}</p>
+                    <p className="flex flex-row gap-1 items-center">
+                      {" "}
+                      <Icon icon="pixelarticons:heart" width="14" height="14"  />
+                      {item.favourites}
+                    </p>
+                    <p className="flex items-center">
+                      {" "}
+                      <Icon
+                        icon="pixelarticons:chart-bar"
+                        width="14"
+                        height="14"
+                      />{" "}
+                      {item.popularity}
+                    </p>
+                  </div>
+                  <div className="overflow-y-scroll text-xs  w-[100%] md:w-[50%] mt-3">
+                    <p
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    ></p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -55,7 +80,6 @@ export default function Home() {
         </div>
 
         <MangaList query={"Evangelion"} />
-        
       </div>
     );
   }

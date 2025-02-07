@@ -24,12 +24,14 @@ export default function Favorites(){
         if(local){   
             const localStorageData  = JSON.parse(local)
             setData(localStorageData)
-        }else{
+            console.log(data)
+        } else {
             console.log("error")
         }
-    },[data])
+    }, []) // Solo se ejecuta una vez cuando se monta el componente
+    
 
-    if (data.length === 0) return <NotFound text="No hay registros"/>
+    if (data.length === 0) return <NotFound text="Añade peliculas o animes favoritos a tu coleccion."></NotFound>
     return (
         <div className="w-full p-12 flex flex-col gap-2.5">
             <div>

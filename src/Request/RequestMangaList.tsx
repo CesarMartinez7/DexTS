@@ -20,6 +20,16 @@ export const GET_MANGA_LIST = gql`
           userPreferred
         }
         chapters
+        format
+        duration
+        favourites
+        popularity
+        description
+        meanScore
+        endDate {
+          year
+        }
+        episodes
         genres
         isAdult
         description
