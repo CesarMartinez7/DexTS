@@ -4,7 +4,6 @@ import { Media, Welcome } from "../Types/MangaList";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
 import { GET_MANGA_LIST } from "../Request/RequestMangaList";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import NotFound from "./NoFound";
 
 type Query = {
@@ -44,12 +43,7 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
               </ul>
             </div>
             <p className="list-col-wrap textarea-xs opacity-75" dangerouslySetInnerHTML={{__html: item.description}}></p>
-            <button className="btn btn-square btn-ghost" title="dsf">
-              <Icon icon="pixelarticons:play" width="20" height="20" />
-            </button>
-            <button className="btn btn-square btn-ghost" title="dsf">
-              <Icon icon="pixelarticons:heart" width="20" height="20" />
-            </button>
+            
           </li>
         ))}
       </ul>
@@ -89,8 +83,7 @@ export default function MangaList({ query }: Query) {
     },
   });
 
-  // const isFirstPage = currentPage === 1;
-  // const isLastPage = data?.Page.pageInfo.hasNextPage === false;
+
 
   if (loading) return <Loading />;
   if (error) return <NotFound text="Ocurrio un error " />;
@@ -115,23 +108,6 @@ export default function MangaList({ query }: Query) {
         />
       </main>
       <div className="flex justify-center mt-11">
-        {/* <div className="join">
-          <button
-            className="join-item btn"
-            onClick={() => !isFirstPage && setCurrentPage(currentPage - 1)}
-            disabled={isFirstPage}
-          >
-            «
-          </button>
-          <button className="join-item btn">Page {currentPage}</button>
-          <button
-            className="join-item btn"
-            onClick={() => !isLastPage && setCurrentPage(currentPage + 1)}
-            disabled={isLastPage}
-          >
-            »
-          </button>
-        </div> */}
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
 
-import { Format } from "./MangaList";
 // Estas son las interfaces y tipos utilizados en la Pagina o Route de Manga para la peticion de los datos
+
+import { Format } from "./MangaList";
+
+
 export type Tags = {
     name: string;
     description: string;
@@ -28,8 +31,8 @@ export interface MangaPeticion {
     description: string;
     startDate : {
         year: number;
-    }
-    episodios: unknown;
+    };
+    episodes: number;
     chapters: number;
     isAdult: boolean;
     meanScore: number;

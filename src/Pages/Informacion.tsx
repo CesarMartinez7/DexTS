@@ -9,19 +9,19 @@ import { reducer, CountAction, ConteoDeAcciones } from "../Types/MangaReducer";
 import { useRef } from "react";
 import imageNotFound from "../../public/imagent.svg";
 import { TypesTy } from "../Types/Manga";
+
+
 type PropsArrayEpisodios = {
-  episodios: number;
+  episodes: number;
   dispatch: React.Dispatch<CountAction>;
 };
 
-
-
-const ArrayEpisodios = ({ episodios, dispatch }: PropsArrayEpisodios) => {
+const ArrayEpisodios = ({ episodes, dispatch }: PropsArrayEpisodios) => {
   return (
     <>
-      {Array.from({ length: episodios }, (_, i) => (
+      {Array.from({ length: episodes }, (_, i) => (
         <button
-        key={crypto.randomUUID()}
+          key={crypto.randomUUID()}
           className={`btn btn-active `}
           type="button"
           onClick={() =>
@@ -38,29 +38,15 @@ const ArrayEpisodios = ({ episodios, dispatch }: PropsArrayEpisodios) => {
   );
 };
 
-// const Genres = ({ DATA }: any) => {
-//   return (
-//     <section>
-//       <ul className="flex gap-2 flex-wrap">
-//         {DATA.genres.map((gen: any) => (
-//           <li className="badge h-fit w-fit badge-ghost">{gen}</li>
-//         ))}
-//       </ul>
-//     </section>
-//   );
-// };
-
 type NewData = {
-  nameEnglish: string
-  nameRomaji: string
-  id: number
-  image: string
-  type: string
-  episodios: unknown
-  descripcion: string
-}
-
-
+  nameEnglish: string;
+  nameRomaji: string;
+  id: number;
+  image: string;
+  type: string;
+  episodios: unknown;
+  descripcion: string;
+};
 
 export default function Manga() {
   const refEmbed = useRef<HTMLDivElement>(null);
@@ -73,29 +59,26 @@ export default function Manga() {
     },
   });
 
-
-
   const handleClickAdd = (DATA: MangaPeticion) => {
-    const oldData : [] = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const ObjectData : NewData = {
+    const oldData: [] = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const ObjectData: NewData = {
       nameEnglish: DATA.title.english,
       nameRomaji: DATA.title.romaji,
       id: DATA.id,
       image: DATA.bannerImage,
       type: DATA.type,
-      episodios: DATA.episodios,
+      episodios: DATA.episodes,
       descripcion: DATA.description,
     };
-    
-    const existe = oldData.find((producto: NewData) => producto.id  === ObjectData.id) 
-    if(existe)
-      console.log("Ya  existe esta mierda")
-    else{
+
+    const existe = oldData.find(
+      (producto: NewData) => producto.id === ObjectData.id
+    );
+    if (existe) console.log("Ya  existe esta mierda");
+    else {
       const newArrayData = [...oldData, ObjectData];
       localStorage.setItem("favorites", JSON.stringify(newArrayData));
     }
-    
- 
   };
 
   if (loading) return <Loading />;
@@ -130,16 +113,23 @@ export default function Manga() {
                 <p>Tp: {DATA.format}</p>
                 <p>{DATA.isAdult ? "+18" : "+14"}</p>
               </div>
-            
+
               <div className="flex gap-2.5">
-                <button className="btn btn-wide " onClick={() => {
-                  if(refEmbed.current){
-                    refEmbed.current.scrollIntoView({behavior: "smooth"})
-                  }
-                }}>
-                  <Icon icon="pixelarticons:edit" width="20" height="20" /> {DATA.type === TypesTy.ANIME ? "Ver" : "Leer"}
+                <button
+                  className="btn btn-wide "
+                  onClick={() => {
+                    if (refEmbed.current) {
+                      refEmbed.current.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                >
+                  <Icon icon="pixelarticons:edit" width="20" height="20" />{" "}
+                  {DATA.type === TypesTy.ANIME ? "Ver" : "Leer"}
                 </button>
-                <button className="btn btn-sm" onClick={() => handleClickAdd(DATA)}>
+                <button
+                  className="btn btn-sm"
+                  onClick={() => handleClickAdd(DATA)}
+                >
                   <Icon icon="pixelarticons:heart" width="18" height="18" />
                   Añadir a favoritos
                 </button>
@@ -180,7 +170,9 @@ export default function Manga() {
                 <div className="tab-content bg-base-100 border-base-300 p-6">
                   <div className="flex flex-wrap gap-1.5">
                     {DATA.tags.map((tag) => (
-                      <kbd className="kbd-xs kbd" key={crypto.randomUUID()}>{tag.name}</kbd>
+                      <kbd className="kbd-xs kbd" key={crypto.randomUUID()}>
+                        {tag.name}
+                      </kbd>
                     ))}
                   </div>
                 </div>
@@ -197,6 +189,7 @@ export default function Manga() {
                     <div className="stat-title">Critica</div>
                     <div className="stat-value">{DATA.averageScore}</div>
                     <div className="stat-desc">
+                      Episodios: <strong>{DATA.episodes}</strong>
                       Episodios: <strong>{DATA.chapters}</strong>
                     </div>
                   </div>
@@ -230,11 +223,36 @@ export default function Manga() {
                         width="20"
                         height="20"
                       />
-                      Episodio Anterior
+                      Episodio anterior
                     </button>
-                    
+                    <div className="dropdown dropdown-hover">
+                      <div tabIndex={0} role="button" className="btn m-1">
+                        Episodios
+                      </div>
+                      <ul
+                        tabIndex={0}
+                        className="dropdown-content menu bg-base-100 rounded-box z-[1] w-[69vw] grid grid-cols-8 overflow-scroll h-[60vh] gap-2   p-2 shadow"
+                      >
+                        {Array.from({ length: DATA.episodes }, (_, i) => (
+                          <li>
+                            <button 
+                            className="btn"
+                              onClick={() =>
+                                dispatch({
+                                  type: ConteoDeAcciones.REASIGNAR,
+                                  payload: i + 1,
+                                })
+                              }
+                            >
+                              Episodios {i + 1}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                   <div>
+                    <button>{DATA.episodes}</button>
                     <button
                       className="btn btn-outline"
                       onClick={() => {
@@ -256,9 +274,9 @@ export default function Manga() {
                     </button>
                   </div>
                 </div>
-                <div ref={refEmbed}>
+                <div ref={refEmbed} className="aspect-video">
                   <embed
-                    className="w-full h-[700px]"
+                    className="w-full h-[700px] aspect-[700px] rounded-2xl"
                     src={`https://vidsrc.cc/v2/embed/anime/ani${id}/${state?.count}/sub?autoPlay=false`}
                   />
                 </div>
@@ -319,7 +337,7 @@ export default function Manga() {
                   </p>
                   <ol className="grid grid-cols-10 g gap-2 h-full overflow-y-scroll scroll-smooth grid-flow-row auto-rows-max  ">
                     <ArrayEpisodios
-                      episodios={DATA.chapters}
+                      episodes={DATA.episodes}
                       dispatch={dispatch}
                     ></ArrayEpisodios>
                   </ol>
