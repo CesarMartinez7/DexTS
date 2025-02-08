@@ -39,7 +39,7 @@ export default function Navbar() {
                   ref={inputRef}
                   type="search"
                   className="grow placeholder placeholder-zinc-600 focus:w-full w-14 md:w-[20%]  transition-all duration-200"
-                  placeholder="Goku Super sayayin"
+                  placeholder="Beserk, Cowboy Bebop..."
                 />
                 <kbd className="kbd kbd-sm bg-transparent">Ctrl</kbd>
                 <kbd className="kbd kbd-sm bg-transparent">K</kbd>

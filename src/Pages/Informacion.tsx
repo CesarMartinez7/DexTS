@@ -8,6 +8,7 @@ import { GET_DATA_MANGA } from "../Request/Request1";
 import { reducer, CountAction, ConteoDeAcciones } from "../Types/MangaReducer";
 import { useRef } from "react";
 import imageNotFound from "../../public/imagent.svg";
+import { TypesTy } from "../Types/Manga";
 type PropsArrayEpisodios = {
   episodios: number;
   dispatch: React.Dispatch<CountAction>;
@@ -136,7 +137,7 @@ export default function Manga() {
                     refEmbed.current.scrollIntoView({behavior: "smooth"})
                   }
                 }}>
-                  <Icon icon="pixelarticons:edit" width="20" height="20" /> Leer
+                  <Icon icon="pixelarticons:edit" width="20" height="20" /> {DATA.type === TypesTy.ANIME ? "Ver" : "Leer"}
                 </button>
                 <button className="btn btn-sm" onClick={() => handleClickAdd(DATA)}>
                   <Icon icon="pixelarticons:heart" width="18" height="18" />

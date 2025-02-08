@@ -52,7 +52,7 @@ export default function Home() {
                   <div className="flex flex-row gap-2.5 text-xs font-light mt-0.5">
                     <p className="text-xs">{item.isAdult ? "+18" : "+14"}</p>
                     <p>{item.format}</p>
-                    <p>Episodios: {item.episodes}</p>
+                    <p>Episodios {item.episodes}</p>
                     <p className="flex flex-row gap-1 items-center">
                       {" "}
                       <Icon icon="pixelarticons:heart" width="14" height="14"  />
@@ -68,7 +68,7 @@ export default function Home() {
                       {item.popularity}
                     </p>
                   </div>
-                  <div className="overflow-y-scroll text-xs  w-[100%] md:w-[50%] mt-3">
+                  <div className="overflow-hidden text-xs h-[50%] w-[100%] md:w-[50%] mt-2">
                     <p
                       dangerouslySetInnerHTML={{ __html: item.description }}
                     ></p>

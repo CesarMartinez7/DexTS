@@ -1,10 +1,16 @@
 
+import { Format } from "./MangaList";
 // Estas son las interfaces y tipos utilizados en la Pagina o Route de Manga para la peticion de los datos
 export type Tags = {
     name: string;
     description: string;
 }
 
+
+export const enum TypesTy {
+    MANGA = "MANGA",
+    ANIME = "ANIME",
+}
 
 
 export interface MangaPeticion {
@@ -16,8 +22,8 @@ export interface MangaPeticion {
         english: string;
         native: string
     }
-    type: "MANGA" | "ANIME"
-    format: string;
+    type: TypesTy
+    format: Format;
     status: string;
     description: string;
     startDate : {

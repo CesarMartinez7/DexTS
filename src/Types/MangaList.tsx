@@ -10,7 +10,7 @@ export interface Welcome {
 }
 
 
-const enum Format {
+export const enum Format {
     TV,
     TV_SHORT,
     MOVIE,
