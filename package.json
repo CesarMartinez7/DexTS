@@ -1,5 +1,5 @@
 {
-  "name": "mangats",
+  "name": "dexts",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,10 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@apollo/client": "^3.12.7",
+    "@apollo/client": "3.12.7",
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/vite": "^4.0.0",
-    "@types/uuid": "^10.0.0",
     "graphql": "^16.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -37,5 +36,6 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5"
-  }
+  },
+  "license": "MIT"
 }

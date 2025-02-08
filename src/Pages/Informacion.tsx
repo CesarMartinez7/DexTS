@@ -232,6 +232,7 @@ export default function Manga() {
                       />
                       Episodio Anterior
                     </button>
+                    
                   </div>
                   <div>
                     <button
