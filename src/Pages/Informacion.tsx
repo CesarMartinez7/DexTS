@@ -1,85 +1,29 @@
-import { useParams } from "react-router-dom";
+
 import { useQuery } from "@apollo/client";
 import Loading from "../Components/Loading";
-import { MangaPeticion } from "../Types/Manga";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 import { GET_DATA_MANGA } from "../Request/Request1";
-import { reducer, CountAction, ConteoDeAcciones } from "../Types/MangaReducer";
-import { useRef } from "react";
+import { reducer, ConteoDeAcciones } from "../Types/MangaReducer";
 import imageNotFound from "../../public/imagent.svg";
 import { TypesTy } from "../Types/Manga";
+import HookInformacion from "../Hooks/informacion"; 
+import { ArrayEpisodios } from "../Hooks/informacion";
+import { MangaPeticion } from "../Types/Manga";
 
 
-type PropsArrayEpisodios = {
-  episodes: number;
-  dispatch: React.Dispatch<CountAction>;
-};
 
-const ArrayEpisodios = ({ episodes, dispatch }: PropsArrayEpisodios) => {
-  return (
-    <>
-      {Array.from({ length: episodes }, (_, i) => (
-        <button
-          key={crypto.randomUUID()}
-          className={`btn btn-active `}
-          type="button"
-          onClick={() =>
-            dispatch({
-              type: ConteoDeAcciones.REASIGNAR,
-              payload: i + 1,
-            })
-          }
-        >
-          {i + 1}
-        </button>
-      ))}
-    </>
-  );
-};
-
-type NewData = {
-  nameEnglish: string;
-  nameRomaji: string;
-  id: number;
-  image: string;
-  type: string;
-  episodios: unknown;
-  descripcion: string;
-};
 
 export default function Manga() {
-  const refEmbed = useRef<HTMLDivElement>(null);
+  const {handleClickAdd,numeriId,refEmbed} = HookInformacion()
   const [state, dispatch] = useReducer(reducer, { count: 1 });
-  const { id } = useParams();
-  const numeriId = id ? parseInt(id) : 0;
   const { loading, error, data } = useQuery(GET_DATA_MANGA, {
     variables: {
       id: numeriId,
     },
   });
 
-  const handleClickAdd = (DATA: MangaPeticion) => {
-    const oldData: [] = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const ObjectData: NewData = {
-      nameEnglish: DATA.title.english,
-      nameRomaji: DATA.title.romaji,
-      id: DATA.id,
-      image: DATA.bannerImage,
-      type: DATA.type,
-      episodios: DATA.episodes,
-      descripcion: DATA.description,
-    };
-
-    const existe = oldData.find(
-      (producto: NewData) => producto.id === ObjectData.id
-    );
-    if (existe) console.log("Ya  existe esta mierda");
-    else {
-      const newArrayData = [...oldData, ObjectData];
-      localStorage.setItem("favorites", JSON.stringify(newArrayData));
-    }
-  };
+  
 
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
@@ -189,7 +133,7 @@ export default function Manga() {
                     <div className="stat-title">Critica</div>
                     <div className="stat-value">{DATA.averageScore}</div>
                     <div className="stat-desc">
-                      Episodios: <strong>{DATA.chapters}</strong>
+                      Episodios: <strong>{DATA.episodes}</strong>
                     </div>
                   </div>
                 </div>
@@ -230,12 +174,12 @@ export default function Manga() {
                       </div>
                       <ul
                         tabIndex={0}
-                        className="dropdown-content menu bg-base-100 rounded-box z-[1] w-[69vw] grid grid-cols-8 overflow-scroll h-[60vh] gap-2   p-2 shadow"
+                        className="dropdown-content menu bg-base-100 rounded-box z-[1] w-[69vw] grid grid-cols-8 overflow-y-scroll h-[60vh] gap-1 p-2 shadow"
                       >
                         {Array.from({ length: DATA.episodes }, (_, i) => (
                           <li>
                             <button 
-                            className="btn"
+                            className="btn btn-xs"
                               onClick={() =>
                                 dispatch({
                                   type: ConteoDeAcciones.REASIGNAR,
@@ -243,7 +187,7 @@ export default function Manga() {
                                 })
                               }
                             >
-                              Episodios {i + 1}
+                              Episodio {i + 1}
                             </button>
                           </li>
                         ))}
@@ -274,8 +218,8 @@ export default function Manga() {
                 </div>
                 <div ref={refEmbed} className="aspect-video">
                   <embed
-                    className="w-full h-[700px] aspect-[700px] rounded-2xl"
-                    src={`https://vidsrc.cc/v2/embed/anime/ani${id}/${state?.count}/sub?autoPlay=false`}
+                    className="w-full h-[400px] md:h-[700px] aspect-[700px] rounded-2xl"
+                    src={`https://vidsrc.cc/v2/embed/anime/ani${numeriId}/${state?.count}/sub?autoPlay=false`}
                   />
                 </div>
               </div>
@@ -285,7 +229,7 @@ export default function Manga() {
                   <iframe
                     title={`Cuadro de ${DATA.title.english} `}
                     className="w-full h-[600px] lg:h-screen rounded-xl p-6"
-                    src={`https://vidsrc.icu/embed/manga/${id}/${state?.count}`}
+                    src={`https://vidsrc.icu/embed/manga/${numeriId}/${state?.count}`}
                   ></iframe>
                 </div>
                 <div className=" lg:p-6 w-full lg:h-screen flex gap-4 flex-col p-5.5">
