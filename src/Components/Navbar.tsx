@@ -38,21 +38,21 @@ export default function Navbar() {
                 <input
                   ref={inputRef}
                   type="search"
-                  className="grow placeholder placeholder-zinc-600 focus:w-full w-14 md:w-[20%]  transition-all duration-200"
+                  className="grow placeholder placeholder-zinc-600 focus:w-16 w-12 md:w-[10%]  transition-all duration-200"
                   placeholder="Beserk, Cowboy Bebop..."
                 />
-                <kbd className="kbd kbd-sm bg-transparent">Ctrl</kbd>
-                <kbd className="kbd kbd-sm bg-transparent">K</kbd>
+                <kbd className="kbd kbd-xs md:kbd-sm bg-transparent">Ctrl</kbd>
+                <kbd className="kbd kbd-xs md:kbd-sm bg-transparent">K</kbd>
               </label>
             </form>
           </li>
           <li>
           <Link to={"/favorites"} className="btn btn-ghost btn-circle">
-            <Icon icon="pixelarticons:heart" width="22" height="22" />
+            <Icon icon="pixelarticons:heart"  className="w-10 h-6" />
           </Link>
           </li>
           <li>
-            <button>
+            <button className="btn btn-circle btn-ghost">
               <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}
                 <input
@@ -64,7 +64,7 @@ export default function Navbar() {
                 {/* sun icon */}
 
                 <svg
-                  className="swap-off h-7 w-7 fill-current"
+                  className="swap-off w-10 h-6  fill-current"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -78,7 +78,7 @@ export default function Navbar() {
 
                 {/* moon icon */}
                 <svg
-                  className="swap-on h-7 w-7 fill-current"
+                  className="swap-on w-10 h-6 fill-current"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"

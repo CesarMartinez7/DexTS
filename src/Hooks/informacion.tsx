@@ -1,9 +1,11 @@
 import React, { RefObject } from "react";
-import { MangaPeticion } from "../Types/Manga";
+import { Media } from "../Types/Manga";
 import {CountAction,ConteoDeAcciones} from "../Types/MangaReducer"
 import { useParams } from "react-router-dom";
 import { useRef } from "react";
-
+import { GET_DATA_MANGA } from "../Request/Request1";
+import { ApolloError, useQuery } from "@apollo/client";
+import { Data } from "../Types/Manga";
 
 export type NewData = {
     nameEnglish: string;
@@ -16,12 +18,13 @@ export type NewData = {
   };
 
 
-
-
 type ReturningHook = {
-    handleClickAdd : (DATA: MangaPeticion) => void
+    handleClickAdd : (DATA: Media) => void
     numeriId: number
     refEmbed: RefObject<HTMLDivElement>
+    loading: boolean
+    error: ApolloError | undefined  
+    data : Data
 }
 
 
@@ -30,7 +33,12 @@ export default function HookInformacion () : ReturningHook {
     const refEmbed = useRef<HTMLDivElement>(null)
     const  {id} = useParams()
     const numeriId = id ? parseInt(id) : 0
-    const handleClickAdd = (DATA: MangaPeticion)  => {
+    const { loading, error, data } = useQuery(GET_DATA_MANGA, {
+        variables: {
+          id: numeriId,
+        },
+      });
+    const handleClickAdd = (DATA: Media)  => {
     const oldData: [] = JSON.parse(localStorage.getItem("favorites") || "[]");
     const ObjectData: NewData = {
       nameEnglish: DATA.title.english,
@@ -53,7 +61,7 @@ export default function HookInformacion () : ReturningHook {
   };
 
   
-  return {handleClickAdd,numeriId,refEmbed}
+  return {handleClickAdd,numeriId,refEmbed,loading,error,data}
     
 }
 

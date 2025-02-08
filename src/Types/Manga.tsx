@@ -4,6 +4,17 @@
 import { Format } from "./MangaList";
 
 
+export interface Response {
+    data:          Data;
+    loading:       boolean;
+    networkStatus: number;
+}
+
+export interface Data {
+    Media: Media;
+}
+
+
 export type Tags = {
     name: string;
     description: string;
@@ -16,15 +27,11 @@ export const enum TypesTy {
 }
 
 
-export interface MangaPeticion {
+export interface Media {
     bannerImage: string;
     id: number;
     idMal: number;
-    title: {
-        romaji: string;
-        english: string;
-        native: string
-    }
+    title: Title
     type: TypesTy
     format: Format;
     status: string;
@@ -38,12 +45,26 @@ export interface MangaPeticion {
     meanScore: number;
     averageScore: number;
     duration: number
-    coverImage: {
-        extraLarge: string;
-        large: string;
-        medium: string;
-        color: string
-    }
+    coverImage: CoverImage
     genres: string[]
     tags: Array<Tags>
+}
+
+
+
+export interface CoverImage {
+    extraLarge: string;
+    large:      string;
+    medium:     string;
+    color:      string;
+    __typename: string;
+}
+
+
+
+export interface Title {
+    romaji:     string;
+    english:    string;
+    native:     string;
+    __typename: string;
 }

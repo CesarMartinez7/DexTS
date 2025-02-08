@@ -1,42 +1,33 @@
-
-import { useQuery } from "@apollo/client";
 import Loading from "../Components/Loading";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useReducer } from "react";
-import { GET_DATA_MANGA } from "../Request/Request1";
 import { reducer, ConteoDeAcciones } from "../Types/MangaReducer";
-import imageNotFound from "../../public/imagent.svg";
+import ImageNotFound from "../../public/imagent.svg";
 import { TypesTy } from "../Types/Manga";
 import HookInformacion from "../Hooks/informacion"; 
 import { ArrayEpisodios } from "../Hooks/informacion";
-import { MangaPeticion } from "../Types/Manga";
+
 
 
 
 
 export default function Manga() {
-  const {handleClickAdd,numeriId,refEmbed} = HookInformacion()
+  const {handleClickAdd,numeriId,refEmbed,loading,error,data} = HookInformacion()
   const [state, dispatch] = useReducer(reducer, { count: 1 });
-  const { loading, error, data } = useQuery(GET_DATA_MANGA, {
-    variables: {
-      id: numeriId,
-    },
-  });
-
   
 
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
   if (data) {
-    const DATA: MangaPeticion = data.Media;
+    const DATA = data.Media
     return (
       <div className="flex w-full flex-col">
         <div className="flex flex-col h-auto w-full ">
-          <div className=" h-[30vh] relative">
+          <div className=" h-[15vh] md:h-[30vh] relative">
             <img
               src={
                 DATA.bannerImage === null || ""
-                  ? imageNotFound
+                  ? ImageNotFound
                   : DATA.bannerImage
               }
               alt={`Baner de ${DATA.title.romaji}`}
@@ -71,7 +62,7 @@ export default function Manga() {
                   {DATA.type === TypesTy.ANIME ? "Ver" : "Leer"}
                 </button>
                 <button
-                  className="btn btn-sm"
+                  className="btn btn-xs md:btn-sm"
                   onClick={() => handleClickAdd(DATA)}
                 >
                   <Icon icon="pixelarticons:heart" width="18" height="18" />
@@ -148,8 +139,8 @@ export default function Manga() {
             </div>
           </div>
           <div className="w-full lg:p-12  h-auto">
-            {DATA.type === "ANIME" ? (
-              <div className="w-full h-full p-0 md:p-7">
+            {DATA.type === TypesTy.ANIME ? (
+              <div className="w-full h-full p-3 md:p-7">
                 <div className="flex justify-between items-center w-full">
                   <div className="mt-5 mb-5">
                     <button
@@ -159,7 +150,7 @@ export default function Manga() {
                           payload: 0,
                         })
                       }
-                      className="btn"
+                      className="btn  btn-xs md:btn-md"
                     >
                       <Icon
                         icon="pixelarticons:arrow-left"
@@ -168,8 +159,8 @@ export default function Manga() {
                       />
                       Episodio anterior
                     </button>
-                    <div className="dropdown dropdown-hover">
-                      <div tabIndex={0} role="button" className="btn m-1">
+                    <div className="dropdown dropdown-hover ">
+                      <div tabIndex={0} role="button" className="btn  btn-xs md:btn-md m-1">
                         Episodios
                       </div>
                       <ul
@@ -179,7 +170,7 @@ export default function Manga() {
                         {Array.from({ length: DATA.episodes }, (_, i) => (
                           <li>
                             <button 
-                            className="btn btn-xs"
+                            className="btn  btn-xs md:btn-md"
                               onClick={() =>
                                 dispatch({
                                   type: ConteoDeAcciones.REASIGNAR,
@@ -196,7 +187,7 @@ export default function Manga() {
                   </div>
                   <div>
                     <button
-                      className="btn "
+                      className="btn  btn-xs md:btn-md "
                       onClick={() => {
                         refEmbed.current?.scrollIntoView({
                           behavior: "smooth",
