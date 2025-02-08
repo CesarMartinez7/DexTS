@@ -24,7 +24,7 @@ export default function Navbar() {
         <a className="btn btn-ghost  text-xl " href="/">
           dex
           <span className="-rotate-10">
-            <TypeScript  className="w-[30px] h-[20px] md:w-[40px] h-[30px]" />
+            <TypeScript  className="w-[30px] h-[20px] md:w-[40px] md:h-[30px]" />
           </span>
         </a>
       </div>

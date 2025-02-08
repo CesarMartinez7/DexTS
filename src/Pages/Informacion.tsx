@@ -178,7 +178,7 @@ export default function Manga() {
                                 })
                               }
                             >
-                              Episodio {i + 1}
+                              Ep {i + 1}
                             </button>
                           </li>
                         ))}
