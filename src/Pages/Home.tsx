@@ -44,7 +44,7 @@ export default function Home() {
                   alt={`Imagen de ${item.title.english}`}
                   className="w-full h-full object-cover relative"
                 />
-                <div className="absolute flex-col bg-gradient-to-t flex items-start md:p-12 p-6 from-base-100 via-transparent to-base-100 inset-0">
+                <div className="absolute flex-col bg-gradient-to-t flex items-end md:p-12 p-6 from-base-100 via-transparent to-base-100 inset-0">
                   <h2 className="font-extralight text-xs">
                     {item.title.native}
                   </h2>
@@ -68,11 +68,11 @@ export default function Home() {
                       {item.popularity}
                     </p>
                   </div>
-                  <div className="overflow-hidden text-xs h-[50%] w-[100%] md:w-[50%] mt-2">
+                  {/* <div className="overflow-hidden text-xs h-[50%] w-[100%] md:w-[50%] mt-2">
                     <p
                       dangerouslySetInnerHTML={{ __html: item.description }}
                     ></p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}

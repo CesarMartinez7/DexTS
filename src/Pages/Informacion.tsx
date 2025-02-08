@@ -118,7 +118,7 @@ export default function Manga() {
                 <button
                   className="btn btn-wide "
                   onClick={() => {
-                    if (refEmbed.current) {
+                    if (refEmbed.current && refEmbed instanceof HTMLEmbedElement) {
                       refEmbed.current.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
@@ -189,7 +189,6 @@ export default function Manga() {
                     <div className="stat-title">Critica</div>
                     <div className="stat-value">{DATA.averageScore}</div>
                     <div className="stat-desc">
-                      Episodios: <strong>{DATA.episodes}</strong>
                       Episodios: <strong>{DATA.chapters}</strong>
                     </div>
                   </div>
@@ -252,9 +251,8 @@ export default function Manga() {
                     </div>
                   </div>
                   <div>
-                    <button>{DATA.episodes}</button>
                     <button
-                      className="btn btn-outline"
+                      className="btn "
                       onClick={() => {
                         refEmbed.current?.scrollIntoView({
                           behavior: "smooth",
