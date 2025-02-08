@@ -6,6 +6,7 @@ import { Data } from "../Types/MangaList";
 import Loading from "../Components/Loading";
 import ImageNoFound from "../../public/imagent.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import NotFound from "../Components/NoFound";
 
 export default function Home() {
   const { data, error, loading } = useQuery(GET_MANGA_LIST);
@@ -24,7 +25,7 @@ export default function Home() {
   }, [data]);
 
   if (loading) return <Loading />;
-  if (error) return <div>Error</div>;
+  if (error) return <NotFound text="Error al traer los datos"></NotFound>;
   if (data) {
     const DATA: Data = data;
 
