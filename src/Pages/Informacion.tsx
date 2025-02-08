@@ -174,7 +174,7 @@ export default function Manga() {
                       </div>
                       <ul
                         tabIndex={0}
-                        className="dropdown-content menu bg-base-100 rounded-box z-[1] w-[69vw] grid grid-cols-8 overflow-y-scroll h-[60vh] gap-1 p-2 shadow"
+                        className="dropdown-content menu bg-base-100 rounded-box z-[1]  auto-rows-max w-[69vw] grid grid-cols-8 grid-rows-auto overflow-y-scroll h-[60vh] gap-1 p-2 shadow"
                       >
                         {Array.from({ length: DATA.episodes }, (_, i) => (
                           <li>
@@ -279,7 +279,7 @@ export default function Manga() {
                   </p>
                   <ol className="grid grid-cols-10 g gap-2 h-full overflow-y-scroll scroll-smooth grid-flow-row auto-rows-max  ">
                     <ArrayEpisodios
-                      episodes={DATA.episodes}
+                      episodes={DATA.chapters}
                       dispatch={dispatch}
                     ></ArrayEpisodios>
                   </ol>
