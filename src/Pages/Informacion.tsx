@@ -4,22 +4,18 @@ import { useReducer } from "react";
 import { reducer, ConteoDeAcciones } from "../Types/MangaReducer";
 import ImageNotFound from "../../public/imagent.svg";
 import { TypesTy } from "../Types/Manga";
-import HookInformacion from "../Hooks/informacion"; 
+import HookInformacion from "../Hooks/informacion";
 import { ArrayEpisodios } from "../Hooks/informacion";
 
-
-
-
-
 export default function Manga() {
-  const {handleClickAdd,numeriId,refEmbed,loading,error,data} = HookInformacion()
+  const { handleClickAdd, numeriId, refEmbed, loading, error, data } =
+    HookInformacion();
   const [state, dispatch] = useReducer(reducer, { count: 1 });
-  
 
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
   if (data) {
-    const DATA = data.Media
+    const DATA = data.Media;
     return (
       <div className="flex w-full flex-col">
         <div className="flex flex-col h-auto w-full ">
@@ -53,7 +49,10 @@ export default function Manga() {
                 <button
                   className="btn btn-wide "
                   onClick={() => {
-                    if (refEmbed.current && refEmbed instanceof HTMLEmbedElement) {
+                    if (
+                      refEmbed.current &&
+                      refEmbed instanceof HTMLEmbedElement
+                    ) {
                       refEmbed.current.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
@@ -87,6 +86,10 @@ export default function Manga() {
               <div className="w-full h-full p-3 md:p-7">
                 <div className="flex justify-between items-center w-full">
                   <div className="mt-5 mb-5">
+                    <p className=" text-[12px]">
+                      Episodio {state.count}
+                    </p>
+                    <p className="mb-2 text-[20px]">{DATA.title.romaji}</p>
                     <button
                       onClick={() =>
                         dispatch({
@@ -104,7 +107,11 @@ export default function Manga() {
                       Episodio anterior
                     </button>
                     <div className="dropdown dropdown-hover ">
-                      <div tabIndex={0} role="button" className="btn  btn-xs md:btn-md m-1">
+                      <div
+                        tabIndex={0}
+                        role="button"
+                        className="btn  btn-xs md:btn-md m-1"
+                      >
                         Episodios
                       </div>
                       <ul
@@ -113,8 +120,8 @@ export default function Manga() {
                       >
                         {Array.from({ length: DATA.episodes }, (_, i) => (
                           <li>
-                            <button 
-                            className="btn  btn-xs md:btn-md"
+                            <button
+                              className="btn  btn-xs md:btn-md"
                               onClick={() =>
                                 dispatch({
                                   type: ConteoDeAcciones.REASIGNAR,
