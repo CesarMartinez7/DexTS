@@ -2,9 +2,11 @@
 @plugin "daisyui";
 @plugin "daisyui" {
 
-  themes: light --default, sunset --prefersdark;
+  themes: light --default, dark --prefersdark;
 
 }
+
+
 
 
 
@@ -152,7 +154,7 @@ canvas {
 
 .glassMorf {
   
-  @apply shadow-sm z-40 sticky top-0 navbar h-10 bg-transparent 
+  @apply shadow-xl z-40 sticky border  border-base-100 top-2 left-0.5 right-2 navbar h-8 bg-transparent 
   
 }
 

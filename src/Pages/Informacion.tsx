@@ -70,65 +70,9 @@ export default function Manga() {
                 </button>
               </div>
               <p
-                className="font-extralight text-sm"
+                className="font-extralight text-sm mt-2"
                 dangerouslySetInnerHTML={{ __html: DATA.description }}
               ></p>
-              <div role="tablist" className="tabs tabs-lift w-full">
-                <input
-                  type="radio"
-                  name="my_tabs_3"
-                  role="tab"
-                  className="tab"
-                  aria-label="Estado"
-                />
-                <div className="tab-content bg-base-100 border-base-300 p-6">
-                  <div className="stats">
-                    <div className="stat">
-                      <div className="stat-title">Estado</div>
-                      <div className="stat-value">{DATA.status}</div>
-                      <div className="stat-desc">
-                        Año de lanzamiento:{" "}
-                        <strong>{DATA.startDate.year}</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <input
-                  type="radio"
-                  name="my_tabs_3"
-                  role="tab"
-                  className="tab"
-                  aria-label="Etiquetas"
-                  defaultChecked
-                />
-                <div className="tab-content bg-base-100 border-base-300 p-6">
-                  <div className="flex flex-wrap gap-1.5">
-                    {DATA.tags.map((tag) => (
-                      <kbd className="kbd-xs kbd" key={crypto.randomUUID()}>
-                        {tag.name}
-                      </kbd>
-                    ))}
-                  </div>
-                </div>
-
-                <input
-                  type="radio"
-                  name="my_tabs_3"
-                  role="tab"
-                  className="tab"
-                  aria-label="Critica"
-                />
-                <div className="tab-content bg-base-100 border-base-300 p-6">
-                  <div className="stat">
-                    <div className="stat-title">Critica</div>
-                    <div className="stat-value">{DATA.averageScore}</div>
-                    <div className="stat-desc">
-                      Episodios: <strong>{DATA.episodes}</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
             <div className="flex items-center justify-center ">
               <img
@@ -245,7 +189,7 @@ export default function Manga() {
                     </div>
                     <div>
                       <button
-                        className="btn btn-outline"
+                        className="btn "
                         onClick={() =>
                           dispatch({
                             type: ConteoDeAcciones.INCREMENT,

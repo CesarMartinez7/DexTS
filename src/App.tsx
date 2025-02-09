@@ -6,7 +6,6 @@ import { useState } from "react";
 import RUTAS from "./Pages/Lazy";
 const { Informacion, Home, Favoritos } = RUTAS;
 import { createContext } from "react";
-import Squares from "./Pages/Main";
 
 
 
