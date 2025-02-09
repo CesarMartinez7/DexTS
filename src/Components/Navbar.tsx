@@ -19,7 +19,7 @@ export default function Navbar() {
     }
   };
   return (
-    <div className="glassMorf ">
+    <div className="glassMorf h-full w-full bg-current rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ">
       <div className="flex-1">
         <a className="btn btn-ghost  text-xl " href="/">
           dex
