@@ -6,7 +6,8 @@ import { useState } from "react";
 import RUTAS from "./Pages/Lazy";
 const { Informacion, Home, Favoritos } = RUTAS;
 import { createContext } from "react";
-import ASCIIText from "./Pages/Main";
+import Squares from "./Pages/Main";
+
 
 
 interface GlobalQuery {
@@ -32,7 +33,7 @@ export default function App() {
             <Routes>
               <Route
                 path="/main"
-                element={<div className="h-screen"><ASCIIText text="Dexts" textFontSize={23} ></ASCIIText></div>}
+                element={<div>sfsf</div>}
               ></Route>
               <Route
                 path="/search"
