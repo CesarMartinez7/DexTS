@@ -42,15 +42,15 @@ export default function Favorites(){
             </div>
             <div className="grid grid-cols-2 gap-3.5 md:grid-cols-4">
                 {data.map((item) => (
-                    <a className="card image-full shadow-sm z-20 " href={`manga/${item.id} `} key={item.id}>
+                    <a className="card image-full shadow-sm z-20 auto-rows-[250px] overflow-hidden text-ellipsis" href={`manga/${item.id} `} key={item.id}>
                     <figure>
                       <img
                         src={item.image === null ?imageNoFound : item.image  }
                         alt={item.nameRomanji} />
                     </figure>
-                    <div className="card-body">
+                    <div className="card-body text-ellipsis">
                       <h2 className="card-title font-medium">{item.nameEnglish} {item.nameRomanji}</h2>
-                      <p className="font-light">{item.descripcion}</p>
+                      <p className="font-light text-[13px] text-ellipsis" dangerouslySetInnerHTML={{__html: item.descripcion}}></p>
                     </div>
                   </a>
                 ))}
