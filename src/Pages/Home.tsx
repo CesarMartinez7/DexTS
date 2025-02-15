@@ -31,7 +31,7 @@ export default function Home() {
 
     return (
       <div className="w-full">
-        <div className="h-[32vh] w-full flex flex-row flex-grow-0 overflow-hidden relative">
+        <div className="h-[26vh] w-full flex flex-row flex-grow-0 overflow-hidden relative">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -45,11 +45,11 @@ export default function Home() {
                   alt={`Imagen de ${item.title.english}`}
                   className="w-full h-full object-cover relative"
                 />
-                <div className="absolute flex-col bg-gradient-to-t flex items-end md:p-12 p-6 from-base-100 via-transparent to-base-100 inset-0">
+                <div className="absolute flex-col bg-gradient-to-t flex items-start md:p-12 p-6 from-base-100 via-transparent to-base-100 inset-0">
                   <h2 className="font-extralight text-xs">
                     {item.title.native}
                   </h2>
-                  <h3 className="text-2xl font-medium">{item.title.english}</h3>
+                  <h3 className="text-2xl font-semibold">{item.title.english}</h3>
                   <div className="flex flex-row gap-2.5 text-xs font-light mt-0.5">
                     <p className="text-xs">{item.isAdult ? "+18" : "+14"}</p>
                     <p>{item.format}</p>
