@@ -19,7 +19,7 @@ export default function Manga() {
     return (
       <div className="flex w-full flex-col">
         <div className="flex flex-col h-auto w-full ">
-          <div className=" h-[15vh] md:h-[30vh] relative">
+          <div className=" h-[25vh] md:h-[30vh] relative">
             <img
               src={
                 DATA.bannerImage === null || ""
