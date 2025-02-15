@@ -24,7 +24,7 @@ export default function Navbar() {
         <a className="btn btn-ghost  text-xl " href="/">
           dex
           <span className="-rotate-10">
-            <TypeScript  className="w-[30px] h-[20px] md:w-[40px] md:h-[30px]" />
+            <TypeScript className="w-[30px] h-[20px] md:w-[40px] md:h-[30px]" />
           </span>
         </a>
       </div>
@@ -38,7 +38,7 @@ export default function Navbar() {
                 <input
                   ref={inputRef}
                   type="search"
-                  className="grow placeholder placeholder-zinc-600 focus:w-16 w-12 md:w-[10%]  transition-all duration-200"
+                  className="grow placeholder placeholder-base-content focus:w-16 w-12 md:w-[10%]  transition-all duration-200"
                   placeholder="Beserk, Cowboy Bebop..."
                 />
                 <kbd className="kbd kbd-xs md:kbd-sm bg-transparent">Ctrl</kbd>
