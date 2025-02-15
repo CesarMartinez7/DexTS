@@ -36,7 +36,7 @@ export default function Manga() {
               data-element="Datos"
               className="flex flex-col  gap-1.5 lg:p-12  p-5 "
             >
-              <h3 className=" text-4xl font-medium ">{DATA.title.romaji}</h3>
+              <h3 className=" text-4xl font-extrabold  ">{DATA.title.romaji}</h3>
               <div className="text-[11px] opacity-70 font-extralight mt-1.5 mb-1.5 gap-2 flex flex-re">
                 <p>Year: {DATA.startDate.year}</p>
                 <p>Romanji: {DATA.title.native}</p>
