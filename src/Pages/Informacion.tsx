@@ -1,23 +1,30 @@
 import Loading from "../Components/Loading";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { reducer, ConteoDeAcciones } from "../Types/MangaReducer";
 import ImageNotFound from "../../public/imagent.svg";
 import { TypesTy } from "../Types/Manga";
 import HookInformacion from "../Hooks/informacion";
 import { ArrayEpisodios } from "../Hooks/informacion";
+import { useRef } from "react";
 
 export default function Manga() {
   const { handleClickAdd, numeriId, refEmbed, loading, error, data } =
     HookInformacion();
   const [state, dispatch] = useReducer(reducer, { count: 1 });
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (loading) return <Loading />;
   if (error) return <div>Error</div>;
+
   if (data) {
     const DATA = data.Media;
     return (
-      <div className="flex w-full flex-col">
+      <div className="flex w-full flex-col" ref={divRef}>
         <div className="flex flex-col h-auto w-full ">
           <div className=" h-[25vh] md:h-[30vh] relative">
             <img
@@ -36,7 +43,9 @@ export default function Manga() {
               data-element="Datos"
               className="flex flex-col  gap-1.5 lg:p-12  p-5 "
             >
-              <h3 className=" text-4xl font-extrabold  ">{DATA.title.romaji}</h3>
+              <h3 className=" text-4xl font-extrabold  ">
+                {DATA.title.romaji}
+              </h3>
               <div className="text-[11px] opacity-70 font-extralight mt-1.5 mb-1.5 gap-2 flex flex-re">
                 <p>Year: {DATA.startDate.year}</p>
                 <p>Romanji: {DATA.title.native}</p>
@@ -86,9 +95,7 @@ export default function Manga() {
               <div className="w-full h-full p-3 md:p-7">
                 <div className="flex justify-between items-center w-full">
                   <div className="mt-5 mb-5">
-                    <p className=" text-[12px]">
-                      Episodio {state.count}
-                    </p>
+                    <p className=" text-[12px]">Episodio {state.count}</p>
                     <p className="mb-2 text-[20px]">{DATA.title.romaji}</p>
                     <button
                       onClick={() =>
