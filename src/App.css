@@ -67,6 +67,22 @@ canvas {
 }
 
 
+.mask1 {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+
+.mask2 {
+  
+    -webkit-mask-image: linear-gradient(black, transparent);
+    mask-image: linear-gradient(black, transparent);
+}
+
+.contentt{
+  content-visibility: auto;
+}
+
 
 /* @plugin "daisyui/theme" {
   name: "winter";

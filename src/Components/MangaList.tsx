@@ -20,7 +20,7 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
     return <NotFound text="No se encontraron resultados" />;
   return (
     <div>
-      <ul className="list bg-base-100  overflow-y-auto">
+      <ul className="list bg-base-100 overflow-y-auto">
         {data.Page.media.map((item: Media) => (
           <li
             className="list-row"

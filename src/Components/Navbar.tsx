@@ -34,7 +34,7 @@ export default function Navbar() {
           <li className="h-full">
             <form onSubmit={handleSubmit} className="h-full">
               <label className="input bg-transparent h-8">
-                <Icon icon="pixelarticons:search" width="20" height="20" />
+              <Icon icon="lucide:search" width="18" height="18" />
                 <input
                   ref={inputRef}
                   type="search"
@@ -48,7 +48,7 @@ export default function Navbar() {
           </li>
           <li>
           <Link to={"/favorites"} className="btn btn-ghost btn-circle">
-            <Icon icon="pixelarticons:heart"  className="w-10 h-6" />
+          <Icon icon="lucide:heart" width="24" height="24" />
           </Link>
           </li>
           <li>
@@ -63,32 +63,10 @@ export default function Navbar() {
 
                 {/* sun icon */}
 
-                <svg
-                  className="swap-off w-10 h-6  fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M13 0h-2v4h2zM0 11v2h4v-2zm24 0v2h-4v-2zM13 24h-2v-4h2zM8 6h8v2H8zM6 8h2v8H6zm2 10v-2h8v2zm10-2h-2V8h2zm2-14h2v2h-2zm0 2v2h-2V4zm2 18h-2v-2h2zm-2-2h-2v-2h2zM4 2H2v2h2v2h2V4H4zM2 22h2v-2h2v-2H4v2H2z"
-                  />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 3v1m0 16v1m-9-9h1m16 0h1m-2.636-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707"/></g></svg>
 
                 {/* moon icon */}
-                <svg
-                  className="swap-on w-10 h-6 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M6 2h8v2h-2v2h-2V4H6zM4 6V4h2v2zm0 10H2V6h2zm2 2H4v-2h2zm2 2H6v-2h2zm10 0v2H8v-2zm2-2v2h-2v-2zm-2-4h2v4h2v-8h-2v2h-2zm-6 0v2h6v-2zm-2-2h2v2h-2zm0 0V6H8v6z"
-                  />
-                </svg>
+                
               </label>
             </button>
           </li>

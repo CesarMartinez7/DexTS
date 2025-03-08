@@ -38,6 +38,7 @@ export default function Favorites(){
 
             <button className="btn" onClick={() => {
                 localStorage.setItem("favorites","[]")
+                location.reload()
             }}><Icon icon="pixelarticons:trash" width="24" height="24" /> Vaciar favoritos</button>
             </div>
             <div className="grid grid-cols-2 gap-3.5 md:grid-cols-4">
