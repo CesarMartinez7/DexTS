@@ -55,20 +55,37 @@ export default function Manga() {
               </div>
 
               <div className="flex gap-2.5">
-                <button
-                  className="btn btn-wide "
-                  onClick={() => {
-                    if (
-                      refEmbed.current &&
-                      refEmbed instanceof HTMLEmbedElement
-                    ) {
-                      refEmbed.current.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                >
-                  <Icon icon="pixelarticons:edit" width="20" height="20" />{" "}
-                  {DATA.type === TypesTy.ANIME ? "Ver" : "Leer"}
-                </button>
+                {DATA.type === TypesTy.MANGA ? (
+                  <button
+                    className="btn btn-wide "
+                    onClick={() => {
+                      if (
+                        refEmbed.current &&
+                        refEmbed instanceof HTMLEmbedElement
+                      ) {
+                        refEmbed.current.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    <Icon icon="pixelarticons:edit" width="20" height="20" />{" "}
+                    Leer
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-wide "
+                    onClick={() => {
+                      if (
+                        refEmbed.current
+                      ) {
+                        refEmbed.current.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    <Icon icon="pixelarticons:see" width="20" height="20" />{" "}
+                    Ver
+                  </button>
+                )}
+
                 <button
                   className="btn btn-xs md:btn-sm"
                   onClick={() => handleClickAdd(DATA)}

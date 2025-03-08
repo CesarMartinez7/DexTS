@@ -6,6 +6,7 @@ import { useState } from "react";
 import RUTAS from "./Pages/Lazy";
 const { Informacion, Home, Favoritos } = RUTAS;
 import { createContext } from "react";
+import Main2 from "./Pages/Main2";
 
 
 
@@ -42,6 +43,7 @@ export default function App() {
               <Route path="/loading" element={<Loading />}></Route>
               <Route path="/manga/:id" element={<Informacion />}></Route>
               <Route path="/favorites" element={<Favoritos />}></Route>
+              <Route path="/charlyn" element={<Main2/>} />
             </Routes>
           </BrowserRouter>
         </QueryContext.Provider>
