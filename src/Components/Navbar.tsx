@@ -100,24 +100,20 @@ export const Drawer = () => {
           <li>
             <a>
               {" "}
-              <Icon
-                icon="pixelarticons:home"
-                width="20"
-                height="20"
-              /> Home{" "}
+              <Icon icon="lucide:home" width="20" height="20" /> Home{" "}
             </a>
           </li>
           <li>
             <a>
               {" "}
-              <Icon icon="pixelarticons:heart" width="20" height="20" />
+              <Icon icon="lucide:heart" width="20" height="20" />
               Siguiendo
             </a>
           </li>
           <li>
             <a>
               {" "}
-              <Icon icon="pixelarticons:book-open" width="20" height="20" />
+              <Icon icon="lucide:heart" width="20" height="20" />
               Library
             </a>
           </li>

@@ -90,7 +90,7 @@ export default function Manga() {
                   className="btn btn-xs md:btn-sm"
                   onClick={() => handleClickAdd(DATA)}
                 >
-                  <Icon icon="pixelarticons:heart" width="18" height="18" />
+                  <Icon icon="lucide:heart" width="18" height="18" />
                   Añadir a favoritos
                 </button>
               </div>
@@ -124,7 +124,7 @@ export default function Manga() {
                       className="btn  btn-xs md:btn-md"
                     >
                       <Icon
-                        icon="pixelarticons:arrow-left"
+                        icon="lucide:arrow-left"
                         width="20"
                         height="20"
                       />
@@ -175,7 +175,7 @@ export default function Manga() {
                     >
                       Siguiente Episodio
                       <Icon
-                        icon="pixelarticons:arrow-right"
+                        icon="lucide:arrow-right"
                         width="20"
                         height="20"
                       />
@@ -211,7 +211,7 @@ export default function Manga() {
                         className="btn"
                       >
                         <Icon
-                          icon="pixelarticons:arrow-left"
+                          icon="lucide:arrow-left"
                           width="20"
                           height="20"
                         />

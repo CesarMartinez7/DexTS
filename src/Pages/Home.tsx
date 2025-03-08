@@ -7,10 +7,14 @@ import MangaList from "../Components/MangaList";
 import { Icon } from "@iconify/react";
 import { Data } from "../Types/MangaList";
 import { Media } from "../Types/MangaList";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const { data, error, loading } = useQuery(GET_MANGA_LIST);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+
+  const navigate = useNavigate()
 
   // Refs para scroll
   const scrollContainer = useRef<HTMLDivElement>(null);
@@ -99,7 +103,7 @@ export default function Home() {
         <div className="grid grid-cols-[auto_1fr_auto] place-content-center items-center mt-4">
           {/* Botón Izquierdo */}
           <div className="p-4">
-            <button className="btn btn-circle" onClick={prevSlide}>
+            <button className="btn btn-circle" onClick={prevSlide} title="button-to-left">
               <Icon icon="lucide:chevron-left" width="24" height="24" />
             </button>
           </div>
@@ -113,12 +117,14 @@ export default function Home() {
               <div
                 key={item.id}
                 ref={(el) => (itemRefs.current[index] = el)}
-                className={`   snap-center flex-shrink-0 w-[130px] h-[160px]`}
+                className={`snap-center cursor-pointer flex-shrink-0 w-[130px] h-[160px]`}
+                onClick={() => navigate(`/manga/${item.id}`)}
+                title={`See now ${item.title.english}`}
               >
                 <img
                   src={item.coverImage.large}
                   alt={`Imagen de ${item.title.english || item.title.native}`}
-                  className={`rounded-md w-full h-full transition-all duration-150   ${currentIndex === index ? " rounded-2xl scale-110 z-20 " : "grayscale-50 mask2"} `}
+                  className={`rounded-md w-full h-full transition-all duration-150   ${currentIndex === index ? "rounded-2xl scale-110 z-20 " : "grayscale-50 mask2"} `}
                 />
               </div>
             ))}
@@ -126,7 +132,7 @@ export default function Home() {
 
           {/* Botón Derecho */}
           <div className="p-4">
-            <button className="btn btn-circle" onClick={nextSlide}>
+            <button className="btn btn-circle" onClick={nextSlide} title="button-to-right">
               <Icon icon="lucide:chevron-right" width="24" height="24" />
             </button>
           </div>

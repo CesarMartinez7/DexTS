@@ -23,7 +23,7 @@ const List = ({ data, currentPage, setCurrentPage }: Welcome) => {
       <ul className="list bg-base-100 overflow-y-auto">
         {data.Page.media.map((item: Media) => (
           <li
-            className="list-row"
+            className="list-row cursor-pointer hover:bg-base-300 duration-150 transition-all"
             onClick={() => handleClick(item.id)}
             key={item.id}
           >
