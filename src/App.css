@@ -83,11 +83,11 @@ canvas {
   content-visibility: auto;
 }
 
-
+/* 
 /* @plugin "daisyui/theme" {
   name: "winter";
   default: true;
-  prefersdark: true;
+  prefersdark: false;
   color-scheme: "dark";
   --color-base-100: oklch(13% 0.028 261.692);
   --color-base-200: oklch(21% 0.034 264.665);
@@ -117,9 +117,8 @@ canvas {
   --border: 1px;
   --depth: 1;
   --noise: 1;
-} 
+} */
 
- */
 
 * {
   scroll-behavior: smooth

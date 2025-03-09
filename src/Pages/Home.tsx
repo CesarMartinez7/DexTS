@@ -78,7 +78,7 @@ export default function Home() {
                 key={index}
                 className="w-full h-full flex-shrink-0 relative "
               >
-                <div className="absolute bg-black/70 inset-0 flex flex-col justify-end  md:p-20 p-4">
+                <div className="absolute bg-black/70 inset-0 bg-gradient-to-t from-black/100 to-transparent  flex flex-col justify-end  md:p-20 p-4">
                 <div className="flex text-sm gap-2.5 items-center">
                     <p className="text-xs">{item.isAdult ? "+18" : "+14"}</p>
 
