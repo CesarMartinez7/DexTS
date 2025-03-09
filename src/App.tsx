@@ -32,10 +32,6 @@ export default function App() {
             <Navbar />
             <Routes>
               <Route
-                path="/main"
-                element={<div>sfsf</div>}
-              ></Route>
-              <Route
                 path="/search"
                 element={<MangaList query={query}></MangaList>}
               ></Route>
